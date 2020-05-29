@@ -1,8 +1,11 @@
 require('dotenv').config();
 
-const { Client, MessageAttachment } = require('discord.js');
-const { DISCORD_TOKEN, PREFIX } = process.env;
-const bot = new Client();
+const Discord = require('discord.js');
+const { PREFIX, DISCORD_TOKEN, GIPHY_TOKEN } = process.env;
+const bot = new Discord.Client();
+
+const GphApiClient = require('giphy-js-sdk-core');
+giphy = GphApiClient(GIPHY_TOKEN);
 
 bot.once('ready', () => {
   bot.user.setActivity('for admin stuff', {
@@ -26,7 +29,18 @@ bot.on('message', (message) => {
         const member = message.mentions.members.first();
 
         member.kick().then(() => {
-          message.channel.send(member.displayName + ' has been kicked!');
+
+          giphy.search('gifs', { q: 'kick' }).then((response) => {
+
+            const totalResponses = response.data.length;
+            const responseIndex =
+              Math.floor(Math.random() * 10 + 1) % totalResponses;
+            const responseFinal = response.data[responseIndex];
+
+            message.channel.send(member.displayName + ' has been kicked!', {
+              files: [responseFinal.images.fixed_height.url],
+            });
+          });
         });
       }
       if (command === 'ban') {
@@ -35,12 +49,20 @@ bot.on('message', (message) => {
         }
 
         const member = message.mentions.members.first();
-        const gif = new MessageAttachment(
-          'https://media.giphy.com/media/ptDRdwFkFVAkg/source.gif',
-        );
 
         member.ban().then(() => {
-          message.channel.send(member.displayName + ' has been banned!', gif);
+
+          giphy.search('gifs', { q: 'ban' }).then((response) => {
+
+            const totalResponses = response.data.length;
+            const responseIndex =
+              Math.floor(Math.random() * 10 + 1) % totalResponses;
+            const responseFinal = response.data[responseIndex];
+
+            message.channel.send(member.displayName + ' has been banned!', {
+              files: [responseFinal.images.fixed_height.url],
+            });
+          });
         });
       }
     }
