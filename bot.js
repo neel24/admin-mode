@@ -21,7 +21,7 @@ bot.on('message', (message) => {
 
   if (command === 'admin-mode' && message.channel.type == 'text') {
     message.reply(
-      'Here are the available commands which can be used: \n`.kick`,\n`.ban`,\n`.admin-mode-info`',
+      'Here are the available commands which can be used: \n`.admin-mode-info`,\n`.kick`,\n`.ban`',
     );
   }
   else if (command === 'admin-mode-info') {
