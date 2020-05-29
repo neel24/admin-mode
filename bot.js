@@ -19,6 +19,17 @@ bot.on('message', (message) => {
   const args = message.content.slice(PREFIX.length).split(/ +/);
   const command = args.shift().toLowerCase();
 
+  if (command === 'admin-mode') {
+    message.reply(
+      'Here are the available commands which can be used: \n`.kick`,\n`.ban`,\n`.admin-mode-info`',
+    );
+  }
+  else if (command === 'admin-mode-info') {
+    message.channel.send(
+      'Hey there! I\'m a Discord bot used for basic admin management.',
+    );
+  }
+
   if (message.channel.type == 'text') {
     if (message.member.hasPermission('ADMINISTRATOR')) {
       if (command === 'kick') {
@@ -70,17 +81,10 @@ bot.on('message', (message) => {
       message.reply('Sorry, this is an admin-only feature!');
     }
   }
-  else if (command === 'admin-mode') {
-    message.reply(
-      'Here are the available commands which can be used: \n`.kick`,\n`.ban`,\n`.admin-mode-info`',
-    );
+  else if (command === 'kick' && message.channel.type != 'text') {
+    message.reply('Sorry, I can\'t execute that inside DMs!');
   }
-  else if (command === 'admin-mode-info') {
-    message.channel.send(
-      'Hey there! I\'m a Discord bot used for basic admin management.',
-    );
-  }
-  else {
+  else if (command === 'ban' && message.channel.type != 'text') {
     message.reply('Sorry, I can\'t execute that inside DMs!');
   }
 });
