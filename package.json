@@ -1,0 +1,28 @@
+{
+  "name": "admin-mode",
+  "version": "1.0.0",
+  "description": "A Discord bot used for basic admin management.",
+  "main": "bot.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neel24/admin-mode.git"
+  },
+  "keywords": [
+    "node.js",
+    "discord.js",
+    "bot"
+  ],
+  "author": "neel24",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neel24/admin-mode/issues"
+  },
+  "homepage": "https://github.com/neel24/admin-mode#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "eslint": "^7.1.0"
+  }
+}
