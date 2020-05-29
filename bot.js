@@ -1,5 +1,7 @@
+require('dotenv').config();
+
 const { Client, MessageAttachment } = require('discord.js');
-const { prefix, token } = require('./config.json');
+const { DISCORD_TOKEN, PREFIX } = process.env;
 const bot = new Client();
 
 bot.once('ready', () => {
@@ -9,9 +11,9 @@ bot.once('ready', () => {
 });
 
 bot.on('message', (message) => {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  if (!message.content.startsWith(PREFIX) || message.author.bot) return;
 
-  const args = message.content.slice(prefix.length).split(/ +/);
+  const args = message.content.slice(PREFIX.length).split(/ +/);
   const command = args.shift().toLowerCase();
 
   if (command === 'admin-mode') {
@@ -57,4 +59,4 @@ bot.on('message', (message) => {
   }
 });
 
-bot.login(token);
+bot.login(DISCORD_TOKEN);

@@ -23,6 +23,7 @@
   "homepage": "https://github.com/neel24/admin-mode#readme",
   "dependencies": {
     "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
     "eslint": "^7.1.0"
   }
 }
