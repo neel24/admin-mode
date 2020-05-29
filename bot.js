@@ -1,11 +1,11 @@
 require('dotenv').config();
 
 const Discord = require('discord.js');
-const { PREFIX, DISCORD_TOKEN, GIPHY_TOKEN } = process.env;
+const { PREFIX, DISCORD_TOKEN, GIPHY_API_KEY } = process.env;
 const bot = new Discord.Client();
 
 const GphApiClient = require('giphy-js-sdk-core');
-giphy = GphApiClient(GIPHY_TOKEN);
+giphy = GphApiClient(GIPHY_API_KEY);
 
 bot.once('ready', () => {
   bot.user.setActivity('for admin stuff', {
