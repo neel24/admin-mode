@@ -19,7 +19,7 @@ bot.on('message', (message) => {
   const args = message.content.slice(PREFIX.length).split(/ +/);
   const command = args.shift().toLowerCase();
 
-  if (command === 'admin-mode') {
+  if (command === 'admin-mode' && message.channel.type == 'text') {
     message.reply(
       'Here are the available commands which can be used: \n`.kick`,\n`.ban`,\n`.admin-mode-info`',
     );
@@ -27,6 +27,11 @@ bot.on('message', (message) => {
   else if (command === 'admin-mode-info') {
     message.channel.send(
       'Hey there! I\'m a Discord bot used for basic admin management.',
+    );
+  }
+  else if (command === 'admin-mode' && message.channel.type != 'text') {
+    message.reply(
+      'Here are the available commands which can be used: \n`.admin-mode-info`',
     );
   }
 
