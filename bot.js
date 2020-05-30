@@ -7,7 +7,7 @@ const bot = new Discord.Client();
 const PREFIX = '.';
 
 const GphApiClient = require('giphy-js-sdk-core');
-giphy = GphApiClient(GIPHY_API_KEY);
+const giphy = GphApiClient(GIPHY_API_KEY);
 
 bot.once('ready', () => {
   bot.user.setActivity('for admin stuff', {
@@ -37,62 +37,60 @@ bot.on('message', (message) => {
     );
   }
 
-  if (message.channel.type == 'text') {
-    if (message.member.hasPermission('ADMINISTRATOR')) {
-      if (command === 'kick') {
-        if (!message.mentions.users.size) {
-          return message.reply('You need to tag a user in order to kick them!');
-        }
+  if (message.channel.type == 'text' && message.member.hasPermission('ADMINISTRATOR')) {
+    if (command === 'kick') {
+      if (!message.mentions.users.size) {
+        return message.reply('You need to tag a user in order to kick them!');
+      }
 
-        const member = message.mentions.members.first();
+      const member = message.mentions.members.first();
 
-        member.kick().then(() => {
+      member.kick().then(() => {
 
-          giphy.search('gifs', { q: 'kick' }).then((response) => {
+        giphy.search('gifs', { q: 'kick' }).then((response) => {
 
-            const totalResponses = response.data.length;
-            const responseIndex =
+          const totalResponses = response.data.length;
+          const responseIndex =
               Math.floor(Math.random() * 10 + 1) % totalResponses;
-            const responseFinal = response.data[responseIndex];
+          const responseFinal = response.data[responseIndex];
 
-            message.channel.send(member.displayName + ' has been kicked!', {
-              files: [responseFinal.images.fixed_height.url],
-            });
+          message.channel.send(member.displayName + ' has been kicked!', {
+            files: [responseFinal.images.fixed_height.url],
           });
         });
+      });
+    }
+    if (command === 'ban') {
+      if (!message.mentions.users.size) {
+        return message.reply('You need to tag a user in order to ban them!');
       }
-      if (command === 'ban') {
-        if (!message.mentions.users.size) {
-          return message.reply('You need to tag a user in order to ban them!');
-        }
 
-        const member = message.mentions.members.first();
+      const member = message.mentions.members.first();
 
-        member.ban().then(() => {
+      member.ban().then(() => {
 
-          giphy.search('gifs', { q: 'ban' }).then((response) => {
+        giphy.search('gifs', { q: 'ban' }).then((response) => {
 
-            const totalResponses = response.data.length;
-            const responseIndex =
+          const totalResponses = response.data.length;
+          const responseIndex =
               Math.floor(Math.random() * 10 + 1) % totalResponses;
-            const responseFinal = response.data[responseIndex];
+          const responseFinal = response.data[responseIndex];
 
-            message.channel.send(member.displayName + ' has been banned!', {
-              files: [responseFinal.images.fixed_height.url],
-            });
+          message.channel.send(member.displayName + ' has been banned!', {
+            files: [responseFinal.images.fixed_height.url],
           });
         });
-      }
-    }
-    else if (command === 'kick' || command === 'ban') {
-      message.reply('Sorry, this is an admin-only feature!');
+      });
     }
   }
-  else if (command === 'kick' && message.channel.type != 'text') {
-    message.reply('Sorry, I can\'t execute that inside DMs!');
+  else if ((command === 'kick' || command === 'ban') && message.channel.type == 'text') {
+    message.reply('Sorry, this is an admin-only feature!');
   }
-  else if (command === 'ban' && message.channel.type != 'text') {
-    message.reply('Sorry, I can\'t execute that inside DMs!');
+  else if (message.channel.type != 'text') {
+
+    if (command === 'kick' || command === 'ban') {
+      message.reply('Sorry, I can\'t execute that inside DMs!');
+    }
   }
 });
 
