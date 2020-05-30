@@ -4,10 +4,10 @@ const Discord = require('discord.js');
 const { DISCORD_TOKEN, GIPHY_API_KEY } = process.env;
 const bot = new Discord.Client();
 
-const PREFIX = '.';
-
 const GphApiClient = require('giphy-js-sdk-core');
 const giphy = GphApiClient(GIPHY_API_KEY);
+
+const PREFIX = '.';
 
 bot.once('ready', () => {
   bot.user.setActivity('for admin stuff', {
@@ -37,18 +37,17 @@ bot.on('message', (message) => {
     );
   }
 
+  // Allow commands to be run in text channels by admins only.
   if (message.channel.type == 'text' && message.member.hasPermission('ADMINISTRATOR')) {
     if (command === 'kick') {
+      // Ensure that a user needs to be tagged when kicking.
       if (!message.mentions.users.size) {
         return message.reply('You need to tag a user in order to kick them!');
       }
-
       const member = message.mentions.members.first();
-
       member.kick().then(() => {
-
+        // Generate and send a random gif when a member is kicked.
         giphy.search('gifs', { q: 'kick' }).then((response) => {
-
           const totalResponses = response.data.length;
           const responseIndex =
               Math.floor(Math.random() * 10 + 1) % totalResponses;
@@ -61,16 +60,14 @@ bot.on('message', (message) => {
       });
     }
     if (command === 'ban') {
+      // Ensure that a user needs to be tagged when banning.
       if (!message.mentions.users.size) {
         return message.reply('You need to tag a user in order to ban them!');
       }
-
       const member = message.mentions.members.first();
-
       member.ban().then(() => {
-
+        // Generate and send a random gif when a member is banned.
         giphy.search('gifs', { q: 'ban' }).then((response) => {
-
           const totalResponses = response.data.length;
           const responseIndex =
               Math.floor(Math.random() * 10 + 1) % totalResponses;
@@ -83,11 +80,12 @@ bot.on('message', (message) => {
       });
     }
   }
+  // Prevent non-admins from kicking/banning members.
   else if ((command === 'kick' || command === 'ban') && message.channel.type == 'text') {
     message.reply('Sorry, this is an admin-only feature!');
   }
-  else if (message.channel.type != 'text') {
-
+  // Prevent kicking/banning in DMs.
+  else if (message.channel.type == 'dm') {
     if (command === 'kick' || command === 'ban') {
       message.reply('Sorry, I can\'t execute that inside DMs!');
     }
