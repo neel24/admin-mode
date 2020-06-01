@@ -57,6 +57,8 @@ bot.on('message', (message) => {
             files: [responseFinal.images.fixed_height.url],
           });
         });
+      }).catch(() => {
+        message.reply('Sorry, I couldn\'t kick this member!');
       });
     }
     if (command === 'ban') {
@@ -77,6 +79,8 @@ bot.on('message', (message) => {
             files: [responseFinal.images.fixed_height.url],
           });
         });
+      }).catch(() => {
+        message.reply('Sorry, I couldn\'t ban this member!');
       });
     }
   }
