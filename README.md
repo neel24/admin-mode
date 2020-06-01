@@ -1,6 +1,6 @@
 # Admin Mode
 
-Admin Mode is a Discord bot used for basic admin management such as kicking or banning users. It uses the Giphy API to generate a random gif whenever a user is kicked/banned!
+Admin Mode is a Discord bot used for basic admin management. It also uses the Giphy API to generate a hilarious gif whenever a user is kicked/banned!
 
 ## Running the bot
 
@@ -14,16 +14,22 @@ Admin Mode is a Discord bot used for basic admin management such as kicking or b
 
 - Run `npm start` or `node bot.js` to start using the bot.
 
-## Available commands
-
-- `.admin-mode`
-- `.admin-mode-info`
-- `.kick`
-- `.ban`
-
 ## Usage
 
-Once the bot has been added to your server, it should be granted with admin priviledges.
+Once the bot has been added to your server, it should be granted with admin priviledges. Below are the available commands which can be run.
 
-- To kick a user: `.kick @username`
-- To ban a user: `.ban @username`
+`.admin-mode` - Provides a description of the bot.
+
+`.admin-mode-list` - Lists the available commands which can be run.
+
+`.kick` - Kicks a member from the current server.
+
+Usage: `.kick @username`
+
+`.ban` - Bans a member from the current server.
+
+Usage: `.ban @username`
+
+`.purge` - Deletes the number of messages provided.
+
+Usage: `.purge [number_of_messages_to_delete]`
