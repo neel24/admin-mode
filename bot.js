@@ -23,7 +23,7 @@ bot.on('message', (message) => {
 
   if (command === 'admin-mode' && message.channel.type == 'text') {
     message.reply(
-      'Here are the available commands which can be used: \n`.admin-mode-info`,\n`.kick`,\n`.ban`',
+      'Here are the available commands which can be used: \n`.admin-mode-info`,\n`.kick`,\n`.ban`,\n`.purge`',
     );
   }
   else if (command === 'admin-mode-info') {
@@ -39,6 +39,7 @@ bot.on('message', (message) => {
 
   // Allow commands to be run in text channels by admins only.
   if (message.channel.type == 'text' && message.member.hasPermission('ADMINISTRATOR')) {
+
     if (command === 'kick') {
       // Ensure that a user needs to be tagged when kicking.
       if (!message.mentions.users.size) {
@@ -61,6 +62,7 @@ bot.on('message', (message) => {
         message.reply('Sorry, I couldn\'t kick this member!');
       });
     }
+
     if (command === 'ban') {
       // Ensure that a user needs to be tagged when banning.
       if (!message.mentions.users.size) {
@@ -83,14 +85,33 @@ bot.on('message', (message) => {
         message.reply('Sorry, I couldn\'t ban this member!');
       });
     }
+
+    if (command === 'purge') {
+      // Get the delete count as a number.
+      const deleteCount = parseInt(args[0], 10);
+
+      // Conditions for the delete count.
+      if(!deleteCount || deleteCount < 2 || deleteCount > 100) {
+        return message.reply('Please provide a value between 2 and 100 for the number of messages you would like to delete.');
+      }
+      // Bulk delete the last `deleteCount` messages.
+      message.channel.bulkDelete(deleteCount).then(() => {
+        message.channel.send(deleteCount + ' messages were deleted.')
+          .then((sentMsg) => {
+            sentMsg.delete({ timeout: 5000 });
+          });
+      }).catch(() => {
+        message.reply('Unable to delete messages.');
+      });
+    }
   }
-  // Prevent non-admins from kicking/banning members.
-  else if ((command === 'kick' || command === 'ban') && message.channel.type == 'text') {
+  // Prevent non-admins from running admin-only commands.
+  else if ((command === 'kick' || command === 'ban' || command === 'purge') && message.channel.type == 'text') {
     message.reply('Sorry, this is an admin-only feature!');
   }
-  // Prevent kicking/banning in DMs.
+  // Prevent execution of specific commands in DMs.
   else if (message.channel.type == 'dm') {
-    if (command === 'kick' || command === 'ban') {
+    if (command === 'kick' || command === 'ban' || command === 'purge') {
       message.reply('Sorry, I can\'t execute that inside DMs!');
     }
   }
