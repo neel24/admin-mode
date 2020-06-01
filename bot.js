@@ -21,20 +21,38 @@ bot.on('message', (message) => {
   const args = message.content.slice(PREFIX.length).split(/ +/);
   const command = args.shift().toLowerCase();
 
-  if (command === 'admin-mode' && message.channel.type == 'text') {
-    message.reply(
-      'Here are the available commands which can be used: \n`.admin-mode-info`,\n`.kick`,\n`.ban`,\n`.purge`',
-    );
+  if (command === 'admin-mode') {
+    const mainEmbed = new Discord.MessageEmbed()
+      .setTitle('Admin Mode')
+      .setDescription('Hey there! I\'m a Discord bot used for basic admin management. Run  `.admin-mode-list` for available commands!')
+      .setColor('#63d6ff');
+
+    message.channel.send(mainEmbed);
   }
-  else if (command === 'admin-mode-info') {
-    message.channel.send(
-      'Hey there! I\'m a Discord bot used for basic admin management.',
-    );
+  else if (command === 'admin-mode-list' && message.channel.type == 'text') {
+    const listEmbed = new Discord.MessageEmbed()
+      .setTitle('Available commands')
+      .setDescription('Here are the available commands which can be run:')
+      .addFields(
+        { name: '`.admin-mode`', value: 'Provides a description of the bot.' },
+        { name: '`.kick`', value: 'Kicks a member from the current server.\n Usage: `.kick @username`' },
+        { name: '`.ban`', value: 'Bans a member from the current server.\n Usage: `.ban @username`' },
+        { name: '`.purge`', value: 'Deletes the number of messages provided.\n Usage: `.purge [number_of_messages_to_delete]`' },
+      )
+      .setColor('#63d6ff');
+
+    message.channel.send(listEmbed);
   }
-  else if (command === 'admin-mode' && message.channel.type != 'text') {
-    message.reply(
-      'Here are the available commands which can be used: \n`.admin-mode-info`',
-    );
+  else if (command === 'admin-mode-list' && message.channel.type == 'dm') {
+    const listEmbed = new Discord.MessageEmbed()
+      .setTitle('Available commands')
+      .setDescription('Here are the available commands which can be run:')
+      .addFields(
+        { name: '`.admin-mode`', value: 'Provides a description of the bot.' },
+      )
+      .setColor('#63d6ff');
+
+    message.channel.send(listEmbed);
   }
 
   // Allow commands to be run in text channels by admins only.
