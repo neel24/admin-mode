@@ -29,12 +29,21 @@ bot.on('message', (message) => {
 
     message.channel.send(mainEmbed);
   }
+  else if (command === 'demo') {
+    const demoEmbed = new Discord.MessageEmbed()
+      .setTitle('Demo video')
+      .setDescription('This is a useful demo of the bot in action: https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+      .setColor('#63D6FF');
+
+    message.channel.send(demoEmbed);
+  }
   else if (command === 'admin-mode-list' && message.channel.type == 'text') {
     const listEmbed = new Discord.MessageEmbed()
       .setTitle('Available commands')
       .setDescription('Here are the available commands which can be run:')
       .addFields(
         { name: '`.admin-mode`', value: 'Provides a description of the bot.' },
+        { name: '`.demo`', value: 'Provides a demo video of the bot.' },
         { name: '`.kick`', value: 'Kicks a member from the current server.\n Usage: `.kick @username`' },
         { name: '`.ban`', value: 'Bans a member from the current server.\n Usage: `.ban @username`' },
         { name: '`.purge`', value: 'Deletes the number of messages provided.\n Usage: `.purge [number_of_messages_to_delete]`' },
@@ -51,6 +60,7 @@ bot.on('message', (message) => {
       .setDescription('Here are the available commands which can be run:')
       .addFields(
         { name: '`.admin-mode`', value: 'Provides a description of the bot.' },
+        { name: '`.demo`', value: 'Provides a demo video of the bot.' },
       )
       .setColor('#63D6FF');
 
