@@ -25,7 +25,7 @@ bot.on('message', (message) => {
     const mainEmbed = new Discord.MessageEmbed()
       .setTitle('Admin Mode')
       .setDescription('Hey there! I\'m a Discord bot used for basic admin management. Run  `.admin-mode-list` for available commands!')
-      .setColor('#63d6ff');
+      .setColor('#63D6FF');
 
     message.channel.send(mainEmbed);
   }
@@ -38,8 +38,10 @@ bot.on('message', (message) => {
         { name: '`.kick`', value: 'Kicks a member from the current server.\n Usage: `.kick @username`' },
         { name: '`.ban`', value: 'Bans a member from the current server.\n Usage: `.ban @username`' },
         { name: '`.purge`', value: 'Deletes the number of messages provided.\n Usage: `.purge [number_of_messages_to_delete]`' },
+        { name: '`.create-admin`', value: 'Creates an administrator role with name "Admin".' },
+        { name: '`.add-admin`', value: 'Adds the "Admin" role to a member.\n Usage: `.add-admin @username`' },
       )
-      .setColor('#63d6ff');
+      .setColor('#63D6FF');
 
     message.channel.send(listEmbed);
   }
@@ -50,22 +52,20 @@ bot.on('message', (message) => {
       .addFields(
         { name: '`.admin-mode`', value: 'Provides a description of the bot.' },
       )
-      .setColor('#63d6ff');
+      .setColor('#63D6FF');
 
     message.channel.send(listEmbed);
   }
 
-  // Allow commands to be run in text channels by admins only.
   if (message.channel.type == 'text' && message.member.hasPermission('ADMINISTRATOR')) {
 
     if (command === 'kick') {
-      // Ensure that a user needs to be tagged when kicking.
       if (!message.mentions.users.size) {
         return message.reply('You need to tag a user in order to kick them!');
       }
       const member = message.mentions.members.first();
+
       member.kick().then(() => {
-        // Generate and send a random gif when a member is kicked.
         giphy.search('gifs', { q: 'kick' }).then((response) => {
           const totalResponses = response.data.length;
           const responseIndex =
@@ -81,14 +81,13 @@ bot.on('message', (message) => {
       });
     }
 
-    if (command === 'ban') {
-      // Ensure that a user needs to be tagged when banning.
+    else if (command === 'ban') {
       if (!message.mentions.users.size) {
         return message.reply('You need to tag a user in order to ban them!');
       }
       const member = message.mentions.members.first();
+
       member.ban().then(() => {
-        // Generate and send a random gif when a member is banned.
         giphy.search('gifs', { q: 'ban' }).then((response) => {
           const totalResponses = response.data.length;
           const responseIndex =
@@ -104,15 +103,12 @@ bot.on('message', (message) => {
       });
     }
 
-    if (command === 'purge') {
-      // Get the delete count as a number.
+    else if (command === 'purge') {
       const deleteCount = parseInt(args[0], 10);
 
-      // Conditions for the delete count.
       if(!deleteCount || deleteCount < 2 || deleteCount > 100) {
         return message.reply('Please provide a value between 2 and 100 for the number of messages you would like to delete.');
       }
-      // Bulk delete the last `deleteCount` messages.
       message.channel.bulkDelete(deleteCount).then(() => {
         message.channel.send(deleteCount + ' messages were deleted.')
           .then((sentMsg) => {
@@ -122,16 +118,48 @@ bot.on('message', (message) => {
         message.reply('Unable to delete messages.');
       });
     }
+
+    else if (command === 'create-admin') {
+      if (message.guild.roles.cache.find(role => role.name === 'Admin')) {
+        message.channel.send('The "Admin" role already exists!');
+      }
+      else {
+        message.guild.roles.create({
+          data : {
+            name: 'Admin',
+            color: 'GREEN',
+            permissions: ['SEND_MESSAGES', 'ADMINISTRATOR', 'KICK_MEMBERS', 'BAN_MEMBERS', 'MANAGE_MESSAGES'],
+          },
+        }).then(() => {
+          message.channel.send('The "Admin" role was created.');
+        });
+      }
+    }
+
+    else if (command === 'add-admin') {
+      if (!message.mentions.users.size) {
+        return message.reply('You need to tag a user in order to assign them a role!');
+      }
+      const member = message.mentions.members.first();
+      const adminRole = message.guild.roles.cache.find(role => role.name === 'Admin');
+
+      if (member.roles.cache.some(role => role.name === 'Admin')) {
+        return message.reply(member.displayName + ' already has that role!');
+      }
+      else {
+        member.roles.add(adminRole).then(() => {
+          message.channel.send(member.displayName + ' was assigned the "Admin" role!');
+        }).catch(() => {
+          message.reply('Please create the "Admin" role first with `.create-admin`.');
+        });
+      }
+    }
   }
-  // Prevent non-admins from running admin-only commands.
-  else if ((command === 'kick' || command === 'ban' || command === 'purge') && message.channel.type == 'text') {
+  else if ((command === 'kick' || command === 'ban' || command === 'purge' || command === 'create-admin' || command === 'add-admin') && message.channel.type == 'text') {
     message.reply('Sorry, this is an admin-only feature!');
   }
-  // Prevent execution of specific commands in DMs.
-  else if (message.channel.type == 'dm') {
-    if (command === 'kick' || command === 'ban' || command === 'purge') {
-      message.reply('Sorry, I can\'t execute that inside DMs!');
-    }
+  else if ((command === 'kick' || command === 'ban' || command === 'purge' || command === 'create-admin' || command === 'add-admin') && message.channel.type == 'dm') {
+    message.reply('Sorry, I can\'t execute that inside DMs!');
   }
 });
 
