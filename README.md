@@ -19,8 +19,8 @@ Admin Mode is a Discord bot used for basic admin management. It also uses the Gi
 Once the bot has been added to your server, it should be granted with admin priviledges.
 
 These are available commands which can be run:
-- `.admin-mode` - Provides a description of the bot.
-- `.admin-mode-list`- Lists the available commands and the usage.
+- `.about` - Provides a description of the bot.
+- `.list`- Lists the available commands and the usage.
 - `.demo` - Provides a demo video of the bot.
 - `.kick` - Kicks a member from the current server.
 - `.ban` - Bans a member from the current server.

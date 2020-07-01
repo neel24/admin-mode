@@ -21,10 +21,10 @@ bot.on('message', (message) => {
   const args = message.content.slice(PREFIX.length).split(/ +/);
   const command = args.shift().toLowerCase();
 
-  if (command === 'admin-mode') {
+  if (command === 'about') {
     const mainEmbed = new Discord.MessageEmbed()
       .setTitle('Admin Mode')
-      .setDescription('Hey there! I\'m a Discord bot used for basic admin management. Run  `.admin-mode-list` for available commands!')
+      .setDescription('Hey there! I\'m a Discord bot used for basic admin management. Run  `.list` for available commands!')
       .setColor('#63D6FF');
 
     message.channel.send(mainEmbed);
@@ -37,12 +37,12 @@ bot.on('message', (message) => {
 
     message.channel.send(demoEmbed);
   }
-  else if (command === 'admin-mode-list' && message.channel.type == 'text') {
+  else if (command === 'list' && message.channel.type == 'text') {
     const listEmbed = new Discord.MessageEmbed()
       .setTitle('Available commands')
       .setDescription('Here are the available commands which can be run:')
       .addFields(
-        { name: '`.admin-mode`', value: 'Provides a description of the bot.' },
+        { name: '`.about`', value: 'Provides a description of the bot.' },
         { name: '`.demo`', value: 'Provides a demo video of the bot.' },
         { name: '`.kick`', value: 'Kicks a member from the current server.\n Usage: `.kick @username`' },
         { name: '`.ban`', value: 'Bans a member from the current server.\n Usage: `.ban @username`' },
@@ -54,12 +54,12 @@ bot.on('message', (message) => {
 
     message.channel.send(listEmbed);
   }
-  else if (command === 'admin-mode-list' && message.channel.type == 'dm') {
+  else if (command === 'list' && message.channel.type == 'dm') {
     const listEmbed = new Discord.MessageEmbed()
       .setTitle('Available commands')
       .setDescription('Here are the available commands which can be run:')
       .addFields(
-        { name: '`.admin-mode`', value: 'Provides a description of the bot.' },
+        { name: '`.about`', value: 'Provides a description of the bot.' },
         { name: '`.demo`', value: 'Provides a demo video of the bot.' },
       )
       .setColor('#63D6FF');
