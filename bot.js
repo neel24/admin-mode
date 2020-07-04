@@ -129,46 +129,47 @@ bot.on('message', (message) => {
       });
     }
 
-    else if (command === 'create-admin') {
-      if (message.guild.roles.cache.find(role => role.name === 'Admin')) {
-        message.channel.send('The "Admin" role already exists!');
-      }
-      else {
-        message.guild.roles.create({
-          data : {
-            name: 'Admin',
-            color: 'GREEN',
-            permissions: ['SEND_MESSAGES', 'ADMINISTRATOR', 'KICK_MEMBERS', 'BAN_MEMBERS', 'MANAGE_MESSAGES'],
-          },
-        }).then(() => {
-          message.channel.send('The "Admin" role was created.');
-        });
-      }
-    }
-
     else if (command === 'add-admin') {
       if (!message.mentions.users.size) {
         return message.reply('You need to tag a user in order to assign them a role!');
       }
+
       const member = message.mentions.members.first();
       const adminRole = message.guild.roles.cache.find(role => role.name === 'Admin');
 
       if (member.roles.cache.some(role => role.name === 'Admin')) {
         return message.reply(member.displayName + ' already has that role!');
       }
+
+      if (!adminRole) {
+        message.guild.roles.create({
+          data : {
+            name: 'Admin',
+            color: 'GREEN',
+            permissions: ['SEND_MESSAGES', 'ADMINISTRATOR', 'KICK_MEMBERS', 'BAN_MEMBERS', 'MANAGE_MESSAGES'],
+          },
+        // eslint-disable-next-line no-shadow
+        }).then((adminRole) => {
+          member.roles.add(adminRole).catch(() => {
+            message.reply('Unable to add role.');
+          });
+          message.channel.send('The "Admin" role was created.');
+          message.channel.send(member.displayName + ' was assigned the "Admin" role!');
+        });
+      }
       else {
         member.roles.add(adminRole).then(() => {
           message.channel.send(member.displayName + ' was assigned the "Admin" role!');
         }).catch(() => {
-          message.reply('Please create the "Admin" role first with `.create-admin`.');
+          message.reply('Unable to add role.');
         });
       }
     }
   }
-  else if ((command === 'kick' || command === 'ban' || command === 'purge' || command === 'create-admin' || command === 'add-admin') && message.channel.type == 'text') {
+  else if ((command === 'kick' || command === 'ban' || command === 'purge' || command === 'add-admin') && message.channel.type == 'text') {
     message.reply('Sorry, this is an admin-only feature!');
   }
-  else if ((command === 'kick' || command === 'ban' || command === 'purge' || command === 'create-admin' || command === 'add-admin') && message.channel.type == 'dm') {
+  else if ((command === 'kick' || command === 'ban' || command === 'purge' || command === 'add-admin') && message.channel.type == 'dm') {
     message.reply('Sorry, I can\'t execute that inside DMs!');
   }
 });
