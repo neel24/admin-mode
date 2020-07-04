@@ -46,6 +46,8 @@ bot.on('message', (message) => {
         { name: '`.demo`', value: 'Provides a demo video of the bot.' },
         { name: '`.kick`', value: 'Kicks a member from the current server.\n Usage: `.kick @username`' },
         { name: '`.ban`', value: 'Bans a member from the current server.\n Usage: `.ban @username`' },
+        { name: '`.mute`', value: 'Prevents a member from sending messages/adding reactions.\n Usage: `.mute @username`' },
+        { name: '`.unmute`', value: 'Gives a member back the permissions to send messages/add reactions.\n Usage: `.unmute @username`' },
         { name: '`.purge`', value: 'Deletes the number of messages provided.\n Usage: `.purge [number_of_messages_to_delete]`' },
         { name: '`.add-admin`', value: 'Adds the "Admin" role to a member.\n Usage: `.add-admin @username`' },
       )
@@ -164,11 +166,68 @@ bot.on('message', (message) => {
         });
       }
     }
+
+    else if (command === 'mute') {
+      if (!message.mentions.users.size) {
+        return message.reply('You need to tag a user in order to mute them!');
+      }
+      const member = message.mentions.members.first();
+      const muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
+
+      if (member.roles.cache.some(role => role.name === 'Muted')) {
+        return message.reply(member.displayName + ' is already muted!');
+      }
+
+      if (!muteRole) {
+        message.guild.roles.create ({
+          data: {
+            name: 'Muted',
+            color: 'GREY',
+            permissions: [],
+          },
+        }).then((muteRole) => {
+          member.roles.add(muteRole);
+          message.channel.send(member.displayName + ' has been muted!');
+        }).catch(() => {
+          message.reply('Sorry, I\'m unable to mute ' + member.displayName);
+        });
+      }
+      else {
+        member.roles.add(muteRole).then(() => {
+          message.channel.send(member.displayName + ' has been muted!');
+        }).catch(() => {
+          message.reply('Sorry, I\'m unable to mute ' + member.displayName);
+        });
+      }
+      message.channel.updateOverwrite(message.guild.id, {
+        SEND_MESSAGES: false,
+        ADD_REACTIONS: false,
+      });
+    }
+
+    else if (command === 'unmute') {
+      if (!message.mentions.users.size) {
+        return message.reply('You need to tag a user in order to unmute them!');
+      }
+      const member = message.mentions.members.first();
+      const muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
+
+      if (!member.roles.cache.some(role => role.name === 'Muted')) {
+        return message.reply(member.displayName + ' is already unmuted!');
+      }
+
+      message.channel.permissionOverwrites.get(message.guild.id).delete();
+      member.roles.remove(muteRole).then(() => {
+        message.channel.send(member.displayName + ' has been unmuted!').catch(() => {
+          message.reply('Sorry, I\'m unable to unmute ' + member.displayName);
+        });
+      });
+    }
   }
-  else if ((command === 'kick' || command === 'ban' || command === 'purge' || command === 'add-admin') && message.channel.type == 'text') {
+  else if ((command === 'kick' || command === 'ban' || command === 'purge' || command === 'add-admin' || command === 'mute' || command === 'unmute') && message.channel.type == 'text') {
     message.reply('Sorry, this is an admin-only feature!');
   }
-  else if ((command === 'kick' || command === 'ban' || command === 'purge' || command === 'add-admin') && message.channel.type == 'dm') {
+  else if ((command === 'kick' || command === 'ban' || command === 'purge' || command === 'add-admin' || command === 'mute' || command === 'unmute') && message.channel.type == 'dm') {
     message.reply('Sorry, I can\'t execute that inside DMs!');
   }
 });
