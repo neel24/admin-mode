@@ -47,7 +47,6 @@ bot.on('message', (message) => {
         { name: '`.kick`', value: 'Kicks a member from the current server.\n Usage: `.kick @username`' },
         { name: '`.ban`', value: 'Bans a member from the current server.\n Usage: `.ban @username`' },
         { name: '`.purge`', value: 'Deletes the number of messages provided.\n Usage: `.purge [number_of_messages_to_delete]`' },
-        { name: '`.create-admin`', value: 'Creates an administrator role with name "Admin".' },
         { name: '`.add-admin`', value: 'Adds the "Admin" role to a member.\n Usage: `.add-admin @username`' },
       )
       .setColor('#63D6FF');
