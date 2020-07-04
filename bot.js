@@ -149,7 +149,6 @@ bot.on('message', (message) => {
             color: 'GREEN',
             permissions: ['SEND_MESSAGES', 'ADMINISTRATOR', 'KICK_MEMBERS', 'BAN_MEMBERS', 'MANAGE_MESSAGES', 'MANAGE_GUILD'],
           },
-        // eslint-disable-next-line no-shadow
         }).then((adminRole) => {
           member.roles.add(adminRole).catch(() => {
             message.reply('Unable to add role.');
