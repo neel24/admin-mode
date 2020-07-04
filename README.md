@@ -2,6 +2,19 @@
 
 Admin Mode is a Discord bot used for basic admin management. It also uses the Giphy API to generate a hilarious gif whenever a user is kicked/banned!
 
+## Available commands
+
+These are the commands which are currently available:
+- `.about` - Provides a description of the bot.
+- `.list`- Lists the available commands and the usage.
+- `.demo` - Provides a demo video of the bot.
+- `.kick` - Kicks a member from the current server.
+- `.ban` - Bans a member from the current server.
+- `.mute` - Prevents a member from sending messages/adding reactions.
+- `.unmute` - Gives a member back the permissions to send messages/add reactions.
+- `.purge`- Deletes the number of messages provided.
+- `.add-admin`- Adds the "Admin" role to a member.
+
 ## Running the bot
 
 - Clone the repo with `HTTPS/SSH`.
@@ -18,21 +31,12 @@ Admin Mode is a Discord bot used for basic admin management. It also uses the Gi
 
 Once the bot has been added to your server, it should be granted with admin priviledges.
 
-These are available commands which can be run:
-- `.about` - Provides a description of the bot.
-- `.list`- Lists the available commands and the usage.
-- `.demo` - Provides a demo video of the bot.
-- `.kick` - Kicks a member from the current server.
-- `.ban` - Bans a member from the current server.
-- `.purge`- Deletes the number of messages provided.
-- `.create-admin`- Creates an administrator role with name "Admin".
-- `.add-admin`- Adds the "Admin" role to a member.
-
 When creating an admin role with the bot, these are the default permissions set:
 - `SEND_MESSAGES`
 - `ADMINISTRATOR`
 - `KICK_MEMBERS`
 - `BAN_MEMBERS`
 - `MANAGE_MESSAGES`
+- `MANAGE_GUILD`
 
 Additional permissions can be added in Server Settings > Roles > Admin.
