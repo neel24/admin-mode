@@ -147,7 +147,7 @@ bot.on('message', (message) => {
           data : {
             name: 'Admin',
             color: 'GREEN',
-            permissions: ['SEND_MESSAGES', 'ADMINISTRATOR', 'KICK_MEMBERS', 'BAN_MEMBERS', 'MANAGE_MESSAGES'],
+            permissions: ['SEND_MESSAGES', 'ADMINISTRATOR', 'KICK_MEMBERS', 'BAN_MEMBERS', 'MANAGE_MESSAGES', 'MANAGE_GUILD'],
           },
         // eslint-disable-next-line no-shadow
         }).then((adminRole) => {
