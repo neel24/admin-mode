@@ -1,6 +1,6 @@
 # Admin Mode
 
-Admin Mode is a Discord bot used for basic admin management. It also uses the Giphy API to generate a hilarious gif whenever a user is kicked/banned!
+Admin Mode is a Discord bot used for admin management. It also uses the Giphy API to generate a hilarious gif whenever a user is kicked/banned!
 
 ## Available commands
 
