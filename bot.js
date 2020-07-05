@@ -198,7 +198,7 @@ bot.on('message', (message) => {
           message.reply('Sorry, I\'m unable to mute ' + member.displayName);
         });
       }
-      message.channel.updateOverwrite(message.guild.id, {
+      message.channel.updateOverwrite(member.user.id, {
         SEND_MESSAGES: false,
         ADD_REACTIONS: false,
       });
@@ -215,7 +215,7 @@ bot.on('message', (message) => {
         return message.reply(member.displayName + ' is already unmuted!');
       }
 
-      message.channel.permissionOverwrites.get(message.guild.id).delete();
+      message.channel.permissionOverwrites.get(member.user.id).delete();
       member.roles.remove(muteRole).then(() => {
         message.channel.send(member.displayName + ' has been unmuted!').catch(() => {
           message.reply('Sorry, I\'m unable to unmute ' + member.displayName);
