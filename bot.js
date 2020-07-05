@@ -24,7 +24,7 @@ bot.on('message', (message) => {
   if (command === 'about') {
     const mainEmbed = new Discord.MessageEmbed()
       .setTitle('Admin Mode')
-      .setDescription('Hey there! I\'m a Discord bot used for basic admin management. Run  `.list` for available commands!')
+      .setDescription('Hey there! I\'m a Discord bot used for admin management. Run  `.list` for available commands!')
       .setColor('#63D6FF');
 
     message.channel.send(mainEmbed);
