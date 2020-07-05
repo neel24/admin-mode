@@ -1,10 +1,10 @@
 {
   "name": "admin-mode",
   "version": "1.0.0",
-  "description": "A Discord bot used for basic admin management.",
+  "description": "A Discord bot used for admin management.",
   "main": "bot.js",
   "scripts": {
-    "test": "",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node bot.js"
   },
   "repository": {
