@@ -50,6 +50,7 @@ bot.on('message', (message) => {
         { name: '`.unmute`', value: 'Gives a member back the permissions to send messages/add reactions.\n Usage: `.unmute @username`' },
         { name: '`.purge`', value: 'Deletes the number of messages provided.\n Usage: `.purge [number_of_messages_to_delete]`' },
         { name: '`.add-admin`', value: 'Adds the "Admin" role to a member.\n Usage: `.add-admin @username`' },
+        { name: '`.remove-admin`', value: 'Removes the "Admin" role from a member.\n Usage: `.remove-admin @username`' },
       )
       .setColor('#63D6FF');
 
@@ -166,6 +167,28 @@ bot.on('message', (message) => {
       }
     }
 
+    else if (command === 'remove-admin') {
+      if (!message.mentions.users.size) {
+        return message.reply('You need to tag a user in order to unmute them!');
+      }
+      const member = message.mentions.members.first();
+      const adminRole = message.guild.roles.cache.find(role => role.name === 'Admin');
+
+      if (!adminRole) {
+        message.reply('The role "Admin" doesn\'t exist!');
+      }
+      else if (!member.roles.cache.some(role => role.name === 'Admin')) {
+        message.reply(member.displayName + ' doesn\'t have this role!');
+      }
+      else {
+        member.roles.remove(adminRole).then(() => {
+          message.channel.send('The "Admin" role was removed from ' + member.displayName + '!');
+        }).catch(() => {
+          message.reply('Unable to remove role.');
+        });
+      }
+    }
+
     else if (command === 'mute') {
       if (!message.mentions.users.size) {
         return message.reply('You need to tag a user in order to mute them!');
@@ -223,10 +246,10 @@ bot.on('message', (message) => {
       });
     }
   }
-  else if ((command === 'kick' || command === 'ban' || command === 'purge' || command === 'add-admin' || command === 'mute' || command === 'unmute') && message.channel.type == 'text') {
+  else if ((command === 'kick' || command === 'ban' || command === 'purge' || command === 'add-admin' || command === 'remove-admin' || command === 'mute' || command === 'unmute') && message.channel.type == 'text') {
     message.reply('Sorry, this is an admin-only feature!');
   }
-  else if ((command === 'kick' || command === 'ban' || command === 'purge' || command === 'add-admin' || command === 'mute' || command === 'unmute') && message.channel.type == 'dm') {
+  else if ((command === 'kick' || command === 'ban' || command === 'purge' || command === 'add-admin' || command === 'remove-admin' || command === 'mute' || command === 'unmute') && message.channel.type == 'dm') {
     message.reply('Sorry, I can\'t execute that inside DMs!');
   }
 });
