@@ -84,7 +84,7 @@ bot.on('message', (message) => {
               Math.floor(Math.random() * 10 + 1) % totalResponses;
           const responseFinal = response.data[responseIndex];
 
-          message.channel.send(member.displayName + ' has been kicked!', {
+          message.channel.send(`${member.displayName} has been kicked!`, {
             files: [responseFinal.images.fixed_height.url],
           });
         });
@@ -106,7 +106,7 @@ bot.on('message', (message) => {
               Math.floor(Math.random() * 10 + 1) % totalResponses;
           const responseFinal = response.data[responseIndex];
 
-          message.channel.send(member.displayName + ' has been banned!', {
+          message.channel.send(`${member.displayName} has been banned!`, {
             files: [responseFinal.images.fixed_height.url],
           });
         });
@@ -122,7 +122,7 @@ bot.on('message', (message) => {
         return message.reply('Please provide a value between 2 and 100 for the number of messages you would like to delete.');
       }
       message.channel.bulkDelete(deleteCount).then(() => {
-        message.channel.send(deleteCount + ' messages were deleted.')
+        message.channel.send(`${deleteCount} messages were deleted.`)
           .then((sentMsg) => {
             sentMsg.delete({ timeout: 5000 });
           });
@@ -140,7 +140,7 @@ bot.on('message', (message) => {
       const adminRole = message.guild.roles.cache.find(role => role.name === 'Admin');
 
       if (member.roles.cache.some(role => role.name === 'Admin')) {
-        return message.reply(member.displayName + ' already has that role!');
+        return message.reply(`${member.displayName} already has that role!`);
       }
 
       if (!adminRole) {
@@ -155,12 +155,12 @@ bot.on('message', (message) => {
             message.reply('Unable to add role.');
           });
           message.channel.send('The "Admin" role was created.');
-          message.channel.send(member.displayName + ' was assigned the "Admin" role!');
+          message.channel.send(`${member.displayName} was assigned the "Admin" role!`);
         });
       }
       else {
         member.roles.add(adminRole).then(() => {
-          message.channel.send(member.displayName + ' was assigned the "Admin" role!');
+          message.channel.send(`${member.displayName} was assigned the "Admin" role!`);
         }).catch(() => {
           message.reply('Unable to add role.');
         });
@@ -178,11 +178,11 @@ bot.on('message', (message) => {
         message.reply('The role "Admin" doesn\'t exist!');
       }
       else if (!member.roles.cache.some(role => role.name === 'Admin')) {
-        message.reply(member.displayName + ' doesn\'t have this role!');
+        message.reply(`${member.displayName} doesn't have this role!`);
       }
       else {
         member.roles.remove(adminRole).then(() => {
-          message.channel.send('The "Admin" role was removed from ' + member.displayName + '!');
+          message.channel.send(`The "Admin" role was removed from ${member.displayName}!`);
         }).catch(() => {
           message.reply('Unable to remove role.');
         });
@@ -197,7 +197,7 @@ bot.on('message', (message) => {
       const muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
 
       if (member.roles.cache.some(role => role.name === 'Muted')) {
-        return message.reply(member.displayName + ' is already muted!');
+        return message.reply(`${member.displayName} is already muted!`);
       }
 
       if (!muteRole) {
@@ -209,16 +209,16 @@ bot.on('message', (message) => {
           },
         }).then((muteRole) => {
           member.roles.add(muteRole);
-          message.channel.send(member.displayName + ' has been muted!');
+          message.channel.send(`${member.displayName} has been muted!`);
         }).catch(() => {
-          message.reply('Sorry, I\'m unable to mute ' + member.displayName);
+          message.reply(`Sorry, I'm unable to mute ${member.displayName}`);
         });
       }
       else {
         member.roles.add(muteRole).then(() => {
-          message.channel.send(member.displayName + ' has been muted!');
+          message.channel.send(`${member.displayName} has been muted!`);
         }).catch(() => {
-          message.reply('Sorry, I\'m unable to mute ' + member.displayName);
+          message.reply(`Sorry, I'm unable to mute ${member.displayName}`);
         });
       }
       message.channel.updateOverwrite(member.user.id, {
@@ -235,13 +235,13 @@ bot.on('message', (message) => {
       const muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
 
       if (!member.roles.cache.some(role => role.name === 'Muted')) {
-        return message.reply(member.displayName + ' is already unmuted!');
+        return message.reply(`${member.displayName} is already unmuted!`);
       }
 
       message.channel.permissionOverwrites.get(member.user.id).delete();
       member.roles.remove(muteRole).then(() => {
-        message.channel.send(member.displayName + ' has been unmuted!').catch(() => {
-          message.reply('Sorry, I\'m unable to unmute ' + member.displayName);
+        message.channel.send(`${member.displayName} has been unmuted!`).catch(() => {
+          message.reply(`Sorry, I'm unable to unmute ${member.displayName}`);
         });
       });
     }
