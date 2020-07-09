@@ -89,7 +89,7 @@ bot.on('message', (message) => {
           });
         });
       }).catch(() => {
-        message.reply('Sorry, I couldn\'t kick this member!');
+        message.reply(`Sorry, I couldn't kick ${member.displayName}!`);
       });
     }
 
@@ -111,7 +111,7 @@ bot.on('message', (message) => {
           });
         });
       }).catch(() => {
-        message.reply('Sorry, I couldn\'t ban this member!');
+        message.reply(`Sorry, I couldn't ban ${member.displayName}!`);
       });
     }
 
