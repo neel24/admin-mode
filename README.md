@@ -14,6 +14,7 @@ These are the commands which are currently available:
 - `.unmute` - Gives a member back the permissions to send messages/add reactions.
 - `.purge`- Deletes the number of messages provided.
 - `.add-admin`- Adds the "Admin" role to a member.
+- `.remove-admin` - Removes the "Admin" role from a member.
 
 ## Running the bot
 
