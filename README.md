@@ -8,7 +8,7 @@ These are the commands which are currently available:
 - `.about` - Provides a description of the bot.
 - `.help`- Lists the available commands and the usage.
 - `.demo` - Provides a demo video of the bot.
-- `.ping` - Returns latency and API ping.
+- `.ping` - Returns the bot's latency and API ping.
 - `.kick` - Kicks a member from the current server.
 - `.ban` - Bans a member from the current server.
 - `.mute` - Prevents a member from sending messages/adding reactions.
