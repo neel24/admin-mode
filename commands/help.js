@@ -4,7 +4,7 @@ module.exports = {
   name: 'help',
   aliases: ['commands'],
   description: 'Lists the available commands and the usage.',
-  execute(message) {
+  execute(bot, message) {
     const helpEmbed = new Discord.MessageEmbed()
       .setTitle('Available commands')
       .setDescription('Here are the available commands which can be run:')

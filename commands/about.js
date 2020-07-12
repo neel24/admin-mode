@@ -4,7 +4,7 @@ module.exports = {
   name: 'about',
   aliases: ['info'],
   description: 'Provides a description of the bot.',
-  execute(message) {
+  execute(bot, message) {
     const aboutEmbed = new Discord.MessageEmbed()
       .setTitle('Admin Mode')
       .setDescription('Hey there! I\'m a Discord bot used for admin management. Run  `.help` for available commands!')

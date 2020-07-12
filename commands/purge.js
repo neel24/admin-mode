@@ -2,7 +2,7 @@ module.exports = {
   name: 'purge',
   description: 'Deletes the number of messages provided.',
   guildOnly: true,
-  execute(message, args) {
+  execute(bot, message, args) {
     if(message.member.hasPermission('ADMINISTRATOR')) {
       const deleteCount = parseInt(args[0], 10);
 

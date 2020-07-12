@@ -2,7 +2,7 @@ module.exports = {
   name: 'remove-admin',
   description: 'Removes the "Admin" role from a member.',
   guildOnly: true,
-  execute(message) {
+  execute(bot, message) {
     if (message.member.hasPermission('ADMINISTRATOR')) {
       if (!message.mentions.users.size) {
         return message.reply('You need to tag a user in order to unmute them!');

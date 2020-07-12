@@ -24,7 +24,7 @@ bot.once('ready', () => {
   });
 });
 
-bot.on('message', message => {
+bot.on('message', async (message) => {
   if (!message.content.startsWith(PREFIX) || message.author.bot) return;
 
   const args = message.content.slice(PREFIX.length).split(/ +/);
@@ -38,7 +38,7 @@ bot.on('message', message => {
   }
 
   try {
-    command.execute(message, args);
+    command.execute(bot, message, args);
   }
   catch (error) {
     console.error(error);

@@ -2,7 +2,7 @@ module.exports = {
   name: 'add-admin',
   description: 'Adds the "Admin" role to a member.',
   guildOnly: true,
-  execute(message) {
+  execute(bot, message) {
     if (message.member.hasPermission('ADMINISTRATOR')) {
       if (!message.mentions.users.size) {
         return message.reply('You need to tag a user in order to assign them a role!');

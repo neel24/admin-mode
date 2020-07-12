@@ -6,7 +6,7 @@ module.exports = {
   name: 'ban',
   description: 'Bans a member from the current server.',
   guildOnly: true,
-  execute(message) {
+  execute(bot, message) {
     if (message.member.hasPermission('ADMINISTRATOR')) {
       if (!message.mentions.users.size) {
         return message.reply('You need to tag a user in order to ban them!');
