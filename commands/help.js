@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['commands'],
   description: 'Lists the available commands and the usage.',
   execute(message) {
-    const listEmbed = new Discord.MessageEmbed()
+    const helpEmbed = new Discord.MessageEmbed()
       .setTitle('Available commands')
       .setDescription('Here are the available commands which can be run:')
       .addFields(
@@ -21,6 +21,6 @@ module.exports = {
       )
       .setColor('#63D6FF');
 
-    message.channel.send(listEmbed);
+    message.channel.send(helpEmbed);
   },
 };
