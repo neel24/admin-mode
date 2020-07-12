@@ -1,6 +1,6 @@
 module.exports = {
   name: 'ping',
-  description: 'Returns latency and API ping',
+  description: 'Returns latency and API ping.',
   aliases: ['latency'],
   async execute(bot, message) {
     const msg = await message.channel.send('Pinging...');

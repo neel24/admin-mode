@@ -11,6 +11,7 @@ module.exports = {
       .addFields(
         { name: '`.about`', value: 'Provides a description of the bot.' },
         { name: '`.demo`', value: 'Provides a demo video of the bot.' },
+        { name: '`.ping`', value: 'Returns latency and API ping.' },
         { name: '`.kick`', value: 'Kicks a member from the current server.\n Usage: `.kick @username`' },
         { name: '`.ban`', value: 'Bans a member from the current server.\n Usage: `.ban @username`' },
         { name: '`.mute`', value: 'Prevents a member from sending messages/adding reactions.\n Usage: `.mute @username`' },
