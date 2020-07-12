@@ -6,7 +6,7 @@ Admin Mode is a Discord bot used for admin management. It also uses the Giphy AP
 
 These are the commands which are currently available:
 - `.about` - Provides a description of the bot.
-- `.list`- Lists the available commands and the usage.
+- `.help`- Lists the available commands and the usage.
 - `.demo` - Provides a demo video of the bot.
 - `.kick` - Kicks a member from the current server.
 - `.ban` - Bans a member from the current server.
