@@ -5,7 +5,7 @@ Admin Mode is a Discord bot used for admin management. It also uses the Giphy AP
 ## Available commands
 
 These are the commands which are currently available:
-- `.about` - Provides a description of the bot.
+- `.about` - Provides a description and some stats of the bot.
 - `.help`- Lists the available commands and the usage.
 - `.demo` - Provides a demo video of the bot.
 - `.ping` - Returns the bot's latency and API ping.
