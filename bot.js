@@ -22,7 +22,7 @@ bot.once('ready', () => {
   bot.user.setActivity('for admin stuff', {
     type: 'WATCHING',
   });
-  console.log('Bot successfully deployed.');
+  console.log(`${bot.user.tag} successfully deployed.`);
 });
 
 bot.on('message', async (message) => {

@@ -4,6 +4,7 @@ const giphy = GphApiClient(GIPHY_API_KEY);
 
 module.exports = {
   name: 'kick',
+  aliases: 'remove',
   description: 'Kicks a member from the current server.',
   guildOnly: true,
   execute(bot, message) {
@@ -29,7 +30,7 @@ module.exports = {
       });
     }
     else {
-      message.reply('Sorry, this is an admin-only feature!');
+      return message.reply('Sorry, this is an admin-only feature!');
     }
   },
 };

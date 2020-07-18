@@ -3,6 +3,11 @@ module.exports = {
   description: 'Prevents a member from sending messages/adding reactions.',
   guildOnly: true,
   execute(bot, message) {
+
+    if(!message.guild.me.hasPermission('ADMINISTRATOR')) {
+      return message.channel.send('I dont have admin perms :(');
+    }
+
     if (message.member.hasPermission('ADMINISTRATOR')) {
       if (!message.mentions.users.size) {
         return message.reply('You need to tag a user in order to mute them!');
@@ -41,7 +46,7 @@ module.exports = {
       });
     }
     else {
-      message.reply('Sorry, this is an admin-only feature!');
+      return message.reply('Sorry, this is an admin-only feature!');
     }
   },
 };

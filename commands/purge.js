@@ -19,7 +19,7 @@ module.exports = {
       });
     }
     else {
-      message.reply('Sorry, this is an admin-only feature!');
+      return message.reply('Sorry, this is an admin-only feature!');
     }
   },
 };
