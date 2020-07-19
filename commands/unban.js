@@ -1,5 +1,3 @@
-const { execute } = require("./ban");
-
 module.exports = {
   name: 'unban',
   aliases: 'unbanish',
