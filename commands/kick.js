@@ -21,12 +21,12 @@ module.exports = {
                 Math.floor(Math.random() * 10 + 1) % totalResponses;
           const responseFinal = response.data[responseIndex];
 
-          message.channel.send(`${member.displayName} has been kicked!`, {
+          message.channel.send(`${member} has been kicked!`, {
             files: [responseFinal.images.fixed_height.url],
           });
         });
       }).catch(() => {
-        message.reply(`Sorry, I couldn't kick ${member.displayName}!`);
+        message.reply(`Sorry, I couldn't kick ${member}!`);
       });
     }
     else {

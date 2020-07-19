@@ -12,7 +12,7 @@ module.exports = {
       const muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
 
       if (member.roles.cache.some(role => role.name === 'Muted')) {
-        return message.reply(`${member.displayName} is already muted!`);
+        return message.reply(` ${member} is already muted!`);
       }
 
       if (!muteRole) {
@@ -24,16 +24,16 @@ module.exports = {
           },
         }).then((muteRole) => {
           member.roles.add(muteRole);
-          message.channel.send(`${member.displayName} has been muted!`);
+          message.channel.send(`${member} has been muted!`);
         }).catch(() => {
-          message.reply(`Sorry, I'm unable to mute ${member.displayName}`);
+          message.reply(`Sorry, I'm unable to mute ${member}`);
         });
       }
       else {
         member.roles.add(muteRole).then(() => {
-          message.channel.send(`${member.displayName} has been muted!`);
+          message.channel.send(`${member} has been muted!`);
         }).catch(() => {
-          message.reply(`Sorry, I'm unable to mute ${member.displayName}`);
+          message.reply(`Sorry, I'm unable to mute ${member}`);
         });
       }
       message.channel.updateOverwrite(member.user.id, {

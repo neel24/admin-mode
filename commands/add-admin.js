@@ -12,7 +12,7 @@ module.exports = {
       const adminRole = message.guild.roles.cache.find(role => role.name === 'Admin');
 
       if (member.roles.cache.some(role => role.name === 'Admin')) {
-        return message.reply(`${member.displayName} already has that role!`);
+        return message.reply(` ${member} already has that role!`);
       }
 
       if (!adminRole) {
@@ -27,12 +27,12 @@ module.exports = {
             message.reply('Unable to add role.');
           });
           message.channel.send('The "Admin" role was created.');
-          message.channel.send(`${member.displayName} was assigned the "Admin" role!`);
+          message.channel.send(`${member} was assigned the "Admin" role!`);
         });
       }
       else {
         member.roles.add(adminRole).then(() => {
-          message.channel.send(`${member.displayName} was assigned the "Admin" role!`);
+          message.channel.send(`${member} was assigned the "Admin" role!`);
         }).catch(() => {
           message.reply('Unable to add role.');
         });

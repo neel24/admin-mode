@@ -11,14 +11,14 @@ module.exports = {
       const adminRole = message.guild.roles.cache.find(role => role.name === 'Admin');
 
       if (!adminRole) {
-        message.reply('The role "Admin" doesn\'t exist!');
+        message.reply(`The role "Admin" doesn't exist!`);
       }
       else if (!member.roles.cache.some(role => role.name === 'Admin')) {
-        message.reply(`${member.displayName} doesn't have this role!`);
+        message.reply(` ${member} doesn't have this role!`);
       }
       else {
         member.roles.remove(adminRole).then(() => {
-          message.channel.send(`The "Admin" role was removed from ${member.displayName}!`);
+          message.channel.send(`The "Admin" role was removed from ${member}!`);
         }).catch(() => {
           message.reply('Unable to remove role.');
         });

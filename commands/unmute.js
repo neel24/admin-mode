@@ -11,13 +11,13 @@ module.exports = {
       const muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
 
       if (!member.roles.cache.some(role => role.name === 'Muted')) {
-        return message.reply(`${member.displayName} is already unmuted!`);
+        return message.reply(` ${member} is already unmuted!`);
       }
 
       message.channel.permissionOverwrites.get(member.user.id).delete();
       member.roles.remove(muteRole).then(() => {
-        message.channel.send(`${member.displayName} has been unmuted!`).catch(() => {
-          message.reply(`Sorry, I'm unable to unmute ${member.displayName}`);
+        message.channel.send(`${member} has been unmuted!`).catch(() => {
+          message.reply(`Sorry, I'm unable to unmute ${member}`);
         });
       });
     }
