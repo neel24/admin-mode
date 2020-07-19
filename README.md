@@ -11,6 +11,7 @@ These are the commands which are currently available:
 - `.ping` - Returns the bot's latency and API ping.
 - `.kick` - Kicks a member from the current server.
 - `.ban` - Bans a member from the current server.
+- `.unban` - Unbans a member from the current server.
 - `.mute` - Prevents a member from sending messages/adding reactions.
 - `.unmute` - Gives a member back the permissions to send messages/add reactions.
 - `.purge`- Deletes the number of messages provided.
