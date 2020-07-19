@@ -4,10 +4,6 @@ module.exports = {
   guildOnly: true,
   execute(bot, message) {
 
-    if(!message.guild.me.hasPermission('ADMINISTRATOR')) {
-      return message.channel.send('I dont have admin perms :(');
-    }
-
     if (message.member.hasPermission('ADMINISTRATOR')) {
       if (!message.mentions.users.size) {
         return message.reply('You need to tag a user in order to mute them!');
