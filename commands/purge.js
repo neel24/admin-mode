@@ -3,7 +3,7 @@ module.exports = {
   description: 'Deletes the number of messages provided.',
   guildOnly: true,
   execute(bot, message, args) {
-    if(message.member.hasPermission('ADMINISTRATOR')) {
+    if(message.member.hasPermission('MANAGE_MESSAGES')) {
       const deleteCount = parseInt(args[0], 10);
 
       if(!deleteCount || deleteCount < 2 || deleteCount > 100) {
@@ -19,7 +19,7 @@ module.exports = {
       });
     }
     else {
-      return message.reply('Sorry, this is an admin-only feature!');
+      message.reply('Sorry, you do not have sufficient permissions to do this!');
     }
   },
 };

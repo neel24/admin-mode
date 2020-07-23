@@ -4,7 +4,7 @@ module.exports = {
   aliases: 'removerole',
   guildOnly: true,
   execute(bot, message, args) {
-    if (message.member.hasPermission('ADMINISTRATOR')) {
+    if (message.member.hasPermission('MANAGE_ROLES')) {
       const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
       if (!member) return message.reply('You need to tag a member or provide a member id in order to remove a role!');
 
@@ -19,6 +19,9 @@ module.exports = {
           message.channel.send(`The ${role.name} role was removed from ${member}.`);
         }).catch((e) => {console.log(e);});
       }
+    }
+    else {
+      message.reply('Sorry, you do not have sufficient permissions to do this!');
     }
   },
 };

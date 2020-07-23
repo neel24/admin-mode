@@ -3,8 +3,7 @@ module.exports = {
   description: 'Prevents a member from sending messages/adding reactions.',
   guildOnly: true,
   execute(bot, message, args) {
-
-    if (message.member.hasPermission('ADMINISTRATOR')) {
+    if (message.member.hasPermission(['MANAGE_MESSAGES', 'MANAGE_ROLES'])) {
       const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
       if (!member) return message.reply('You need to tag a member or provide a member id in order to mute them!');
       const muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
@@ -40,7 +39,7 @@ module.exports = {
       });
     }
     else {
-      return message.reply('Sorry, this is an admin-only feature!');
+      message.reply('Sorry, you do not have sufficient permissions to do this!');
     }
   },
 };

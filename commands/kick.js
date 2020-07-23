@@ -8,7 +8,7 @@ module.exports = {
   description: 'Kicks a member from the current server.',
   guildOnly: true,
   execute(bot, message, args) {
-    if (message.member.hasPermission('ADMINISTRATOR')) {
+    if (message.member.hasPermission('KICK_MEMBERS')) {
       const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
       if (!member) return message.reply('You need to tag a member or provide a member id in order to kick them!');
 
@@ -28,7 +28,7 @@ module.exports = {
       });
     }
     else {
-      return message.reply('Sorry, this is an admin-only feature!');
+      message.reply('Sorry, you do not have sufficient permissions to do this!');
     }
   },
 };

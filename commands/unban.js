@@ -4,7 +4,7 @@ module.exports = {
   description: 'Unbans a member from the current server.',
   guildOnly: true,
   async execute(bot, message, args) {
-    if (message.member.hasPermission('ADMINISTRATOR')) {
+    if (message.member.hasPermission('BAN_MEMBERS')) {
       const member = bot.users.cache.get(args[0]) || message.mentions.members.first();
       const ban = await message.guild.fetchBans();
 
@@ -19,6 +19,9 @@ module.exports = {
       }).catch(() => {
         message.reply(`Sorry, I couldn't unban ${member}!`);
       });
+    }
+    else {
+      message.reply('Sorry, you do not hsve sufficient permissions to do this!');
     }
   },
 };
