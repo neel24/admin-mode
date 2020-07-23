@@ -2,12 +2,10 @@ module.exports = {
   name: 'remove-admin',
   description: 'Removes the "Admin" role from a member.',
   guildOnly: true,
-  execute(bot, message) {
+  execute(bot, message, args) {
     if (message.member.hasPermission('ADMINISTRATOR')) {
-      if (!message.mentions.users.size) {
-        return message.reply('You need to tag a user in order to unmute them!');
-      }
-      const member = message.mentions.members.first();
+      const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+      if (!member) return message.reply('You need to tag a member or provide a member id in order to remove this role!');
       const adminRole = message.guild.roles.cache.find(role => role.name === 'Admin');
 
       if (!adminRole) {

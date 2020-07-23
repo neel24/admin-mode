@@ -9,7 +9,7 @@ module.exports = {
       const ban = await message.guild.fetchBans();
 
       if(!member) {
-        return message.reply('Please provide a user id!');
+        return message.reply('Please provide a member id!');
       }
       if(!ban.get(member.id)) {
         return message.reply(` ${member} is not banned!`);

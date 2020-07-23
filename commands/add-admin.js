@@ -2,13 +2,10 @@ module.exports = {
   name: 'add-admin',
   description: 'Adds the "Admin" role to a member.',
   guildOnly: true,
-  execute(bot, message) {
+  execute(bot, message, args) {
     if (message.member.hasPermission('ADMINISTRATOR')) {
-      if (!message.mentions.users.size) {
-        return message.reply('You need to tag a user in order to assign them a role!');
-      }
-
-      const member = message.mentions.members.first();
+      const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+      if (!member) return message.reply('You need to tag a member or provide a member id in order to add this role!');
       const adminRole = message.guild.roles.cache.find(role => role.name === 'Admin');
 
       if (member.roles.cache.some(role => role.name === 'Admin')) {
