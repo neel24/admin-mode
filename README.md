@@ -14,7 +14,9 @@ These are the commands which are currently available:
 - `.unban` - Unbans a member from the current server.
 - `.mute` - Prevents a member from sending messages/adding reactions.
 - `.unmute` - Gives a member back the permissions to send messages/add reactions.
-- `.purge`- Deletes the number of messages provided.
+- `.purge` - Deletes the number of messages provided.
+- `.add-role` - Adds the specified role to a member.
+- `.remove-role` - Removes the specified role from a member.
 - `.add-admin`- Adds the "Admin" role to a member.
 - `.remove-admin` - Removes the "Admin" role from a member.
 
