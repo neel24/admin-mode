@@ -20,8 +20,6 @@ module.exports = {
         { name: '`.purge`', value: 'Deletes the number of messages provided.\n Usage: `.purge [number_of_messages_to_delete]`' },
         { name: '`.add-role`', value: 'Adds the specified role to a member.\n Usage: `.add-role @username/member_id <role-name>`' },
         { name: '`.remove-role`', value: 'Removes the specified role from a member.\n Usage: `.remove-role @username/member_id <role-name>`' },
-        { name: '`.add-admin`', value: 'Adds the "Admin" role to a member.\n Usage: `.add-admin @username/member_id`' },
-        { name: '`.remove-admin`', value: 'Removes the "Admin" role from a member.\n Usage: `.remove-admin @username/member_id`' },
       )
       .setColor('#63D6FF');
 

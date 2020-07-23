@@ -17,8 +17,6 @@ These are the commands which are currently available:
 - `.purge` - Deletes the number of messages provided.
 - `.add-role` - Adds the specified role to a member.
 - `.remove-role` - Removes the specified role from a member.
-- `.add-admin`- Adds the "Admin" role to a member.
-- `.remove-admin` - Removes the "Admin" role from a member.
 
 ## Running the bot
 
