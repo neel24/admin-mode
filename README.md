@@ -33,13 +33,3 @@ These are the commands which are currently available:
 ## Usage
 
 Once the bot has been added to your server, it should be granted with admin priviledges.
-
-When creating an admin role with the bot, these are the default permissions set:
-- `SEND_MESSAGES`
-- `ADMINISTRATOR`
-- `KICK_MEMBERS`
-- `BAN_MEMBERS`
-- `MANAGE_MESSAGES`
-- `MANAGE_GUILD`
-
-Additional permissions can be added in Server Settings > Roles > Admin.
