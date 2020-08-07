@@ -1,6 +1,7 @@
 module.exports = {
   name: 'purge',
   description: 'Deletes the number of messages provided.',
+  cooldown: 5,
   guildOnly: true,
   execute(bot, message, args) {
     if(message.member.hasPermission('MANAGE_MESSAGES')) {
