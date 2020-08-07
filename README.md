@@ -9,6 +9,9 @@ These are the commands which are currently available:
 - `.help`- Lists the available commands and the usage.
 - `.demo` - Provides a demo video of the bot.
 - `.ping` - Returns the bot's latency and API ping.
+- `.repo` - Provides the repo url of the bot.
+- `.server-info` - Provides some info about the server.
+- `.user-info` - Provides some info on the specified user.
 - `.kick` - Kicks a member from the current server.
 - `.ban` - Bans a member from the current server.
 - `.unban` - Unbans a member from the current server.
