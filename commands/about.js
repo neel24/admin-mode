@@ -15,7 +15,7 @@ module.exports = {
         { name: 'Guilds', value: bot.guilds.cache.size, inline: true },
         { name: 'Channels', value: bot.channels.cache.size, inline: true },
         { name: 'Latency', value: `${bot.ws.ping}ms`, inline: true },
-        { name: 'Date created', value: moment(bot.user.createdTimestamp).format('Do MMMM YYYY'), inline: true },
+        { name: 'Date created', value: moment(bot.user.createdTimestamp).format('MMMM D YYYY'), inline: true },
       )
       .setFooter('Made by neel24#5896', 'https://cdn.discordapp.com/avatars/665866595230547988/563268183515dc767f7a0451197ca396')
       .setColor('#63D6FF');
