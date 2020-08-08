@@ -1,6 +1,8 @@
 # Admin Mode
 
-Admin Mode is a Discord bot used for admin management. It also uses the Giphy API to generate a hilarious gif whenever a user is kicked/banned!
+Admin Mode is a Discord bot used for admin management. It can perform moderation as well as role management actions.
+
+You can invite the bot to your server by using [this link](https://discord.com/oauth2/authorize?client_id=715577789612556408&scope=bot&permissions=8).
 
 ## Available commands
 
@@ -12,16 +14,25 @@ These are the commands which are currently available:
 - `.repo` - Provides the repo url of the bot.
 - `.server-info` - Provides some info about the server.
 - `.user-info` - Provides some info on the specified user.
+    Usage: `.user-info @username/member_id`
 - `.kick` - Kicks a member from the current server.
+    Usage: `.kick @username/member_id`
 - `.ban` - Bans a member from the current server.
+    Usage: `.ban @username/member_id`
 - `.unban` - Unbans a member from the current server.
+    Usage: `.unban member_id`
 - `.mute` - Prevents a member from sending messages/adding reactions.
+    Usage: `.mute @username/member_id`
 - `.unmute` - Gives a member back the permissions to send messages/add reactions.
+    Usage: `.unmute @username/member_id`
 - `.purge` - Deletes the number of messages provided.
+    Usage: `.purge [number_of_messages_to_delete]`
 - `.add-role` - Adds the specified role to a member.
+    Usage: `.add-role @username/member_id <role-name>`
 - `.remove-role` - Removes the specified role from a member.
+    Usage: `.remove-role @username/member_id <role-name>`
 
-## Running the bot
+## Running the bot locally
 
 - Clone the repo with `HTTPS/SSH`.
 
