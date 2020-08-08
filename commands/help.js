@@ -10,7 +10,6 @@ module.exports = {
       .setDescription('Here are the available commands which can be run:')
       .addFields(
         { name: `**.about**`, value: 'Provides a description and some stats of the bot.' },
-        { name: `**.demo**`, value: 'Provides a demo video of the bot.' },
         { name: `**.ping**`, value: 'Returns the bot\'s latency and API ping.' },
         { name: `**.repo**`, value: 'Provides the repo url of the bot.' },
         { name: `**.server-info**`, value: 'Provides some info about the server.' },
