@@ -26,7 +26,7 @@ module.exports = {
       ])
       .addField('Stats', [
         `**Member Count:** ${message.guild.memberCount}`,
-        `**Humans:** ${members.filter(member => member.user.bot).size}`,
+        `**Humans:** ${members.filter(member => !member.user.bot).size}`,
         `**Bots:** ${members.filter(member => member.user.bot).size}`,
         `**Role Count:** ${roles.size}`,
         `**Emoji Count:** ${emojis.size}`,

@@ -19,7 +19,7 @@ module.exports = {
         { name: `**.ban**`, value: 'Bans a member from the current server.\nUsage: `.ban @username/member_id`' },
         { name: `**.unban**`, value: 'Unbans a member from the current server.\nUsage: `.unban user_id`' },
         { name: `**.mute**`, value: 'Prevents a member from sending messages/adding reactions.\nUsage: `.mute @username/member_id`' },
-        { name: `**.unmute**`, value: 'Gives a member back the permissions to send messages/add reactions.\n Usage: `.unmute @username/member_id`' },
+        { name: `**.unmute**`, value: 'Gives a member back the permissions to send messages/add reactions.\nUsage: `.unmute @username/member_id`' },
         { name: `**.purge**`, value: 'Deletes the number of messages provided.\nUsage: `.purge [number_of_messages_to_delete]`' },
         { name: `**.add-role**`, value: 'Adds the specified role to a member.\nUsage: `.add-role @username/member_id <role-name>`' },
         { name: `**.remove-role**`, value: 'Removes the specified role from a member.\nUsage: `.remove-role @username/member_id <role-name>`' },
