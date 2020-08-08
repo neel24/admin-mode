@@ -16,7 +16,8 @@ module.exports = {
       }
       message.guild.members.unban(member.id).then(() => {
         message.channel.send(`${member} was unbanned!`);
-      }).catch(() => {
+      }).catch((error) => {
+        console.log(error);
         message.reply(`Sorry, I couldn't unban ${member}!`);
       });
     }

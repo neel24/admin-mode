@@ -17,7 +17,9 @@ module.exports = {
       else {
         member.roles.add(role.id).then(() => {
           message.channel.send(`${member} was given the "${role.name}" role.`);
-        }).catch((e) => {console.log(e);});
+        }).catch((error) => {
+          console.log(error);
+        });
       }
     }
     else {

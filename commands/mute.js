@@ -22,14 +22,16 @@ module.exports = {
         }).then((muteRole) => {
           member.roles.add(muteRole);
           message.channel.send(`${member} has been muted!`);
-        }).catch(() => {
+        }).catch((error) => {
+          console.log(error);
           message.reply(`Sorry, I'm unable to mute ${member}`);
         });
       }
       else {
         member.roles.add(muteRole).then(() => {
           message.channel.send(`${member} has been muted!`);
-        }).catch(() => {
+        }).catch((error) => {
+          console.log(error);
           message.reply(`Sorry, I'm unable to mute ${member}`);
         });
       }

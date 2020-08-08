@@ -23,7 +23,8 @@ module.exports = {
             files: [responseFinal.images.fixed_height.url],
           });
         });
-      }).catch(() => {
+      }).catch((error) => {
+        console.log(error);
         message.reply(`Sorry, I couldn't kick ${member}!`);
       });
     }

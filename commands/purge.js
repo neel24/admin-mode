@@ -15,7 +15,8 @@ module.exports = {
           .then((sentMsg) => {
             sentMsg.delete({ timeout: 5000 });
           });
-      }).catch(() => {
+      }).catch((error) => {
+        console.log(error);
         message.reply('Unable to delete messages.');
       });
     }

@@ -14,7 +14,8 @@ module.exports = {
 
       message.channel.permissionOverwrites.get(member.user.id).delete();
       member.roles.remove(muteRole).then(() => {
-        message.channel.send(`${member} has been unmuted!`).catch(() => {
+        message.channel.send(`${member} has been unmuted!`).catch((error) => {
+          console.log(error);
           message.reply(`Sorry, I'm unable to unmute ${member}`);
         });
       });

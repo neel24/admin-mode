@@ -17,7 +17,9 @@ module.exports = {
       else {
         member.roles.remove(role.id).then(() => {
           message.channel.send(`The ${role.name} role was removed from ${member}.`);
-        }).catch((e) => {console.log(e);});
+        }).catch((error) => {
+          console.log(error);
+        });
       }
     }
     else {
