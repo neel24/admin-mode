@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: true,
   execute(bot, message) {
     const members = message.guild.members.cache;
-    const roles = message.guild.roles.cache;
+    const roles = message.guild.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString());
     const channels = message.guild.channels.cache;
     const emojis = message.guild.emojis.cache;
     const serverEmbed = new Discord.MessageEmbed()
@@ -28,10 +28,14 @@ module.exports = {
         `**Member Count:** ${message.guild.memberCount}`,
         `**Humans:** ${members.filter(member => !member.user.bot).size}`,
         `**Bots:** ${members.filter(member => member.user.bot).size}`,
-        `**Role Count:** ${roles.size}`,
+        `**Role Count:** ${roles.length}`,
         `**Emoji Count:** ${emojis.size}`,
         `**Text Channels:** ${channels.filter(channel => channel.type === 'text').size}`,
         `**Voice Channels:** ${channels.filter(channel => channel.type === 'voice').size}`,
+        '\u200b',
+      ])
+      .addField(`Roles [${roles.length}]: `, [
+        roles.length ? roles.join(', ') : 'None',
         '\u200b',
       ])
       .setColor('#63D6FF')

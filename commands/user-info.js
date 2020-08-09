@@ -8,6 +8,7 @@ module.exports = {
   guildOnly: true,
   execute(bot, message, args) {
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+    const roles = member.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString());
     if (!member) return message.reply('You need to tag a member or provide a member id in order to get the userinfo!');
     const userEmbed = new Discord.MessageEmbed()
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
@@ -19,8 +20,9 @@ module.exports = {
         `**ID:** ${member.user.id}`,
         `**Status:** ${member.user.presence.status}`,
         `**Hoist Role:** ${member.roles.hoist ? member.roles.hoist.name : 'None'}`,
-        `**Date created:** ${moment(member.user.createdTimestamp).format('Do MMMM YYYY')}`,
-        `**Server Join Date:** ${moment(member.joinedAt).format('Do MMMM YYYY')}`,
+        `**Date created:** ${moment(member.user.createdTimestamp).format('MMMM D YYYY')}`,
+        `**Server Join Date:** ${moment(member.joinedAt).format('MMMM D YYYY')}`,
+        `**Roles [${roles.length}]: ** ${roles.length ? roles.join(', ') : 'None'}`,
       ])
       .setColor('#63D6FF')
       .setTimestamp();
