@@ -8,7 +8,7 @@ module.exports = {
   guildOnly: true,
   execute(bot, message, args) {
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-    const roles = member.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString());
+    const roles = member.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString()).slice(0, -1);
     if (!member) return message.reply('You need to tag a member or provide a member id in order to get the userinfo!');
     const userEmbed = new Discord.MessageEmbed()
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
