@@ -6,7 +6,7 @@ module.exports = {
   cooldown: 3,
   guildOnly: true,
   execute(bot, message, args) {
-    if (message.member.hasPermission(['MANAGE_MESSAGES', 'MANAGE_ROLES'])) {
+    if (message.member.hasPermission('MANAGE_ROLES')) {
       const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
       if (!member) {
         const muteEmbed = new Discord.MessageEmbed()
