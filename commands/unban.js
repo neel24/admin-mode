@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 module.exports = {
   name: 'unban',
   aliases: 'unbanish',
@@ -9,17 +11,29 @@ module.exports = {
       const ban = await message.guild.fetchBans();
 
       if(!member) {
-        return message.reply('Please provide a member id!');
+        const unbanEmbed = new Discord.MessageEmbed()
+          .setTitle(`**Command: .unban**`)
+          .addField('Unbans a member from the current server.', [
+            `**Usage: **.unban [member_id]`,
+            `**Aliases: **.unbanish`,
+            `**Required permissions: **BAN_MEMBERS`,
+            `**Cooldown: **5s`,
+            `**Example: **\n.unban ${message.member.id}`,
+          ])
+          .setColor('RANDOM');
+        message.channel.send(unbanEmbed);
       }
-      if(!ban.get(member.id)) {
-        return message.reply(` ${member} is not banned!`);
+      else {
+        if(!ban.get(member.id)) {
+          return message.reply(` ${member} is not banned!`);
+        }
+        message.guild.members.unban(member.id).then(() => {
+          message.channel.send(`${member} was unbanned!`);
+        }).catch((error) => {
+          console.log(error);
+          message.reply(`Sorry, I couldn't unban ${member}!`);
+        });
       }
-      message.guild.members.unban(member.id).then(() => {
-        message.channel.send(`${member} was unbanned!`);
-      }).catch((error) => {
-        console.log(error);
-        message.reply(`Sorry, I couldn't unban ${member}!`);
-      });
     }
     else {
       message.reply('Sorry, you do not hsve sufficient permissions to do this!');

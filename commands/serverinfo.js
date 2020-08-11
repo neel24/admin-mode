@@ -2,8 +2,8 @@ const Discord = require('discord.js');
 const moment = require('moment');
 
 module.exports = {
-  name: 'server-info',
-  aliases: ['serverinfo', 'guildinfo'],
+  name: 'serverinfo',
+  aliases: ['server', 'guild'],
   description: 'Provides some info about the server.',
   guildOnly: true,
   execute(bot, message) {
@@ -38,7 +38,7 @@ module.exports = {
         roles.length ? roles.join(', ') : 'None',
         '\u200b',
       ])
-      .setColor('#63D6FF')
+      .setColor('RANDOM')
       .setTimestamp();
 
     message.channel.send(serverEmbed);
