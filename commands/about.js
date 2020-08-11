@@ -18,7 +18,7 @@ module.exports = {
         { name: 'Date created', value: moment(bot.user.createdTimestamp).format('MMMM D YYYY'), inline: true },
       )
       .setFooter('Made by neel24#5896', 'https://cdn.discordapp.com/avatars/665866595230547988/563268183515dc767f7a0451197ca396')
-      .setColor('#63D6FF');
+      .setColor('RANDOM');
 
     message.channel.send(aboutEmbed);
   },

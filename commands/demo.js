@@ -7,7 +7,7 @@ module.exports = {
     const demoEmbed = new Discord.MessageEmbed()
       .setTitle('Demo video')
       .setDescription('This is a useful demo of the bot in action: https://www.youtube.com/watch?v=dQw4w9WgXcQ')
-      .setColor('#63D6FF');
+      .setColor('RANDOM');
 
     message.channel.send(demoEmbed);
   },
