@@ -32,6 +32,7 @@ module.exports = {
             message.channel.send(`The ${role.name} role was removed from ${member}.`);
           }).catch((error) => {
             console.log(error);
+            message.reply(`Unable to remove the "${role.name}" role from ${member}`);
           });
         }
       }
