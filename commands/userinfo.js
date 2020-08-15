@@ -8,7 +8,6 @@ module.exports = {
   guildOnly: true,
   execute(bot, message, args) {
     const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-    const roles = message.member.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString()).slice(0, -1);
     if (!member) {
       const userinfoEmbed = new Discord.MessageEmbed()
         .setTitle(`**Command: .userinfo**`)
@@ -21,6 +20,7 @@ module.exports = {
       message.channel.send(userinfoEmbed);
     }
     else {
+      const roles = member.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString()).slice(0, -1);
       const userEmbed = new Discord.MessageEmbed()
         .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
         .addField(`User info for @${member.user.username}`, [
