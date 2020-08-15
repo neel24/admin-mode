@@ -24,20 +24,32 @@ module.exports = {
         const muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
 
         if (!member.roles.cache.some(role => role.name === 'Muted')) {
-          return message.reply(` ${member} is already unmuted!`);
+          const errorEmbed = new Discord.MessageEmbed()
+            .setDescription(`❌ ${member} is already unmuted!`)
+            .setColor('RED');
+          return message.channel.send(errorEmbed);
         }
 
-        message.channel.permissionOverwrites.get(member.user.id).delete();
+        message.channel.permissionOverwrites.get(muteRole.id).delete();
         member.roles.remove(muteRole).then(() => {
-          message.channel.send(`${member} has been unmuted!`).catch((error) => {
+          const msgEmbed = new Discord.MessageEmbed()
+            .setDescription(`✅ ${member} has been unmuted!`)
+            .setColor('GREEN');
+          message.channel.send(msgEmbed).catch((error) => {
             console.log(error);
-            message.reply(`Sorry, I'm unable to unmute ${member}`);
+            const errorEmbed = new Discord.MessageEmbed()
+              .setDescription(`❌ Sorry, I'm unable to unmute ${member}`)
+              .setColor('RED');
+            message.channel.send(errorEmbed);
           });
         });
       }
     }
     else {
-      message.reply('Sorry, you do not have sufficient permissions to do this!');
+      const warningEmbed = new Discord.MessageEmbed()
+        .setDescription('🔒 Sorry, you do not have sufficient permissions to do this.')
+        .setColor('YELLOW');
+      message.channel.send(warningEmbed);
     }
   },
 };

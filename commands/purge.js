@@ -25,22 +25,34 @@ module.exports = {
       }
 
       else if(deleteCount < 2 || deleteCount > 100) {
-        return message.reply('Please provide a value between 2 and 100 for the number of messages you would like to delete.');
+        const errorEmbed = new Discord.MessageEmbed()
+          .setDescription(`❌ Please provide a value between 2 and 100 only.`)
+          .setColor('RED');
+        message.channel.send(errorEmbed);
       }
       else {
         message.channel.bulkDelete(deleteCount).then(() => {
-          message.channel.send(`${deleteCount} messages were deleted.`)
+          const msgEmbed = new Discord.MessageEmbed()
+            .setDescription(`✅ ${deleteCount} messages were deleted.`)
+            .setColor('GREEN');
+          message.channel.send(msgEmbed)
             .then((sentMsg) => {
               sentMsg.delete({ timeout: 5000 });
             });
         }).catch((error) => {
           console.log(error);
-          message.reply('Unable to delete messages.');
+          const errorEmbed = new Discord.MessageEmbed()
+            .setDescription(`❌ Unable to delete messages.`)
+            .setColor('RED');
+          message.channel.send(errorEmbed);
         });
       }
     }
     else {
-      message.reply('Sorry, you do not have sufficient permissions to do this!');
+      const warningEmbed = new Discord.MessageEmbed()
+        .setDescription('🔒 Sorry, you do not have sufficient permissions to do this.')
+        .setColor('YELLOW');
+      message.channel.send(warningEmbed);
     }
   },
 };

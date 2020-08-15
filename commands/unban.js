@@ -25,18 +25,30 @@ module.exports = {
       }
       else {
         if(!ban.get(member.id)) {
-          return message.reply(` ${member} is not banned!`);
+          const errorEmbed = new Discord.MessageEmbed()
+            .setDescription(`❌ ${member} is not banned!`)
+            .setColor('RED');
+          return message.channel.send(errorEmbed);
         }
         message.guild.members.unban(member.id).then(() => {
-          message.channel.send(`${member} was unbanned!`);
+          const msgEmbed = new Discord.MessageEmbed()
+            .setDescription(`✅ ${member} was unbanned!`)
+            .setColor('GREEN');
+          message.channel.send(msgEmbed);
         }).catch((error) => {
           console.log(error);
-          message.reply(`Sorry, I couldn't unban ${member}!`);
+          const errorEmbed = new Discord.MessageEmbed()
+            .setDescription(`❌ Sorry, I couldn't unban ${member}!`)
+            .setColor('RED');
+          message.channel.send(errorEmbed);
         });
       }
     }
     else {
-      message.reply('Sorry, you do not hsve sufficient permissions to do this!');
+      const warningEmbed = new Discord.MessageEmbed()
+        .setDescription('🔒 Sorry, you do not have sufficient permissions to do this.')
+        .setColor('YELLOW');
+      message.channel.send(warningEmbed);
     }
   },
 };

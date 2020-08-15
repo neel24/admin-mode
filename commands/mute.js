@@ -24,7 +24,17 @@ module.exports = {
         const muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
 
         if (member.roles.cache.some(role => role.name === 'Muted')) {
-          return message.reply(` ${member} is already muted!`);
+          const errorEmbed = new Discord.MessageEmbed()
+            .setDescription(`❌ ${member} is already muted!`)
+            .setColor('RED');
+          return message.channel.send(errorEmbed);
+        }
+
+        if (member.hasPermission('ADMINISTRATOR')) {
+          const errorEmbed = new Discord.MessageEmbed()
+            .setDescription(`❌ I'm unable to do that because ${member} is an admin.`)
+            .setColor('RED');
+          return message.channel.send(errorEmbed);
         }
 
         if (!muteRole) {
@@ -36,28 +46,43 @@ module.exports = {
             },
           }).then((muteRole) => {
             member.roles.add(muteRole);
-            message.channel.send(`${member} has been muted!`);
+            const msgEmbed = new Discord.MessageEmbed()
+              .setDescription(`✅ ${member} has been muted!`)
+              .setColor('GREEN');
+            message.channel.send(msgEmbed);
           }).catch((error) => {
             console.log(error);
-            message.reply(`Sorry, I'm unable to mute ${member}`);
+            const errorEmbed = new Discord.MessageEmbed()
+              .setDescription(`❌ Sorry, I'm unable to mute ${member}`)
+              .setColor('RED');
+            message.channel.send(errorEmbed);
           });
         }
         else {
           member.roles.add(muteRole).then(() => {
-            message.channel.send(`${member} has been muted!`);
+            const msgEmbed = new Discord.MessageEmbed()
+              .setDescription(`✅ ${member} has been muted!`)
+              .setColor('GREEN');
+            message.channel.send(msgEmbed);
           }).catch((error) => {
             console.log(error);
-            message.reply(`Sorry, I'm unable to mute ${member}`);
+            const errorEmbed = new Discord.MessageEmbed()
+              .setDescription(`❌ Sorry, I'm unable to mute ${member}`)
+              .setColor('RED');
+            message.channel.send(errorEmbed);
           });
         }
-        message.channel.updateOverwrite(member.user.id, {
+        message.channel.updateOverwrite(muteRole.id, {
           SEND_MESSAGES: false,
           ADD_REACTIONS: false,
         });
       }
     }
     else {
-      message.reply('Sorry, you do not have sufficient permissions to do this!');
+      const warningEmbed = new Discord.MessageEmbed()
+        .setDescription('🔒 Sorry, you do not have sufficient permissions to do this.')
+        .setColor('YELLOW');
+      message.channel.send(warningEmbed);
     }
   },
 };

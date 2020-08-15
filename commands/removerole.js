@@ -22,23 +22,40 @@ module.exports = {
       }
       else {
         const role = message.guild.roles.cache.find(role => role.name == args.slice(1).join(' '));
-        if(!role) return message.reply(`The specified role was not found.`);
+        if(!role) {
+          const errorEmbed = new Discord.MessageEmbed()
+            .setDescription(`❌ The specified role was not found.`)
+            .setColor('RED');
+          return message.channel.send(errorEmbed);
+        }
 
         if(!member.roles.cache.has(role.id)) {
-          message.reply(` ${member} doesn't have the "${role.name}" role.`);
+          const errorEmbed = new Discord.MessageEmbed()
+            .setDescription(`❌ ${member} doesn't have the "${role.name}" role.`)
+            .setColor('RED');
+          message.channel.send(errorEmbed);
         }
         else {
           member.roles.remove(role.id).then(() => {
-            message.channel.send(`The ${role.name} role was removed from ${member}.`);
+            const msgEmbed = new Discord.MessageEmbed()
+              .setDescription(`✅ The ${role.name} role was removed from ${member}.`)
+              .setColor('GREEN');
+            message.channel.send(msgEmbed);
           }).catch((error) => {
             console.log(error);
-            message.reply(`Unable to remove the "${role.name}" role from ${member}`);
+            const errorEmbed = new Discord.MessageEmbed()
+              .setDescription(`❌ Unable to remove the "${role.name}" role from ${member}`)
+              .setColor('RED');
+            message.channel.send(errorEmbed);
           });
         }
       }
     }
     else {
-      message.reply('Sorry, you do not have sufficient permissions to do this!');
+      const warningEmbed = new Discord.MessageEmbed()
+        .setDescription('🔒 Sorry, you do not have sufficient permissions to do this.')
+        .setColor('YELLOW');
+      message.channel.send(warningEmbed);
     }
   },
 };

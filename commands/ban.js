@@ -33,18 +33,28 @@ module.exports = {
                   Math.floor(Math.random() * 10 + 1) % totalResponses;
             const responseFinal = response.data[responseIndex];
 
-            message.channel.send(`${member} has been banned!`, {
+            const msgEmbed = new Discord.MessageEmbed()
+              .setDescription(`✅ ${member} was banned.`)
+              .setColor('GREEN');
+            message.channel.send(msgEmbed);
+            message.channel.send({
               files: [responseFinal.images.fixed_height.url],
             });
           });
         }).catch((error) => {
           console.log(error);
-          message.reply(`Sorry, I couldn't ban ${member}!`);
+          const errorEmbed = new Discord.MessageEmbed()
+            .setDescription(`❌ Unable to ban ${member}`)
+            .setColor('RED');
+          message.channel.send(errorEmbed);
         });
       }
     }
     else {
-      message.reply('Sorry, you do not have sufficient permissions to do this!');
+      const warningEmbed = new Discord.MessageEmbed()
+        .setDescription('🔒 Sorry, you do not have sufficient permissions to do this.')
+        .setColor('YELLOW');
+      message.channel.send(warningEmbed);
     }
   },
 };
