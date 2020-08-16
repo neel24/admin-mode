@@ -4,6 +4,7 @@ module.exports = {
   name: 'unban',
   aliases: 'unbanish',
   description: 'Unbans a member from the current server.',
+  cooldowm: 5,
   guildOnly: true,
   async execute(bot, message, args) {
     if (message.member.hasPermission('BAN_MEMBERS')) {
