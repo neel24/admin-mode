@@ -22,29 +22,36 @@ module.exports = {
       }
       else {
         const role = message.guild.roles.cache.find(role => role.name == args.slice(1).join(' '));
+        if(!args.slice(1).join(' ')) {
+          const errorEmbed = new Discord.MessageEmbed()
+            .setDescription(`❌ No role was provided.`)
+            .setColor('RED');
+          return message.channel.send(errorEmbed);
+        }
+
         if(!role) {
           const errorEmbed = new Discord.MessageEmbed()
-            .setDescription(`❌ The specified role was not found.`)
+            .setDescription(`❌ The \`${args.slice(1).join(' ')}\` role was not found.`)
             .setColor('RED');
           return message.channel.send(errorEmbed);
         }
 
         if(!member.roles.cache.has(role.id)) {
           const errorEmbed = new Discord.MessageEmbed()
-            .setDescription(`❌ ${member} doesn't have the "${role.name}" role.`)
+            .setDescription(`❌ ${member} doesn't have the \`${role.name}\` role.`)
             .setColor('RED');
           message.channel.send(errorEmbed);
         }
         else {
           member.roles.remove(role.id).then(() => {
             const msgEmbed = new Discord.MessageEmbed()
-              .setDescription(`✅ The ${role.name} role was removed from ${member}.`)
+              .setDescription(`✅ The \`${role.name}\` role was removed from ${member}.`)
               .setColor('GREEN');
             message.channel.send(msgEmbed);
           }).catch((error) => {
             console.log(error);
             const errorEmbed = new Discord.MessageEmbed()
-              .setDescription(`❌ Unable to remove the "${role.name}" role from ${member}`)
+              .setDescription(`❌ Unable to remove the \`${role.name}\` role from ${member}`)
               .setColor('RED');
             message.channel.send(errorEmbed);
           });

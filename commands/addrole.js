@@ -22,29 +22,36 @@ module.exports = {
       }
       else {
         const role = message.guild.roles.cache.find(role => role.name == args.slice(1).join(' '));
+        if(!args.slice(1).join(' ')) {
+          const errorEmbed = new Discord.MessageEmbed()
+            .setDescription(`❌ No role was provided.`)
+            .setColor('RED');
+          return message.channel.send(errorEmbed);
+        }
+
         if(!role) {
           const errorEmbed = new Discord.MessageEmbed()
-            .setDescription('❌ The specified role was not found.')
+            .setDescription(`❌ The \`${args.slice(1).join(' ')}\` role was not found.`)
             .setColor('RED');
           return message.channel.send(errorEmbed);
         }
 
         if(member.roles.cache.has(role.id)) {
           const errorEmbed = new Discord.MessageEmbed()
-            .setDescription(`❌ ${member} already has the "${role.name}" role.`)
+            .setDescription(`❌ ${member} already has the \`${role.name}\` role.`)
             .setColor('RED');
           return message.channel.send(errorEmbed);
         }
         else {
           member.roles.add(role.id).then(() => {
             const msgEmbed = new Discord.MessageEmbed()
-              .setDescription(`✅ ${member} was given the "${role.name}" role.`)
+              .setDescription(`✅ ${member} was given the \`${role.name}\` role.`)
               .setColor('GREEN');
             message.channel.send(msgEmbed);
           }).catch((error) => {
             console.log(error);
             const errorEmbed = new Discord.MessageEmbed()
-              .setDescription(`❌ Unable to add the "${role.name}" role to ${member}`)
+              .setDescription(`❌ Unable to add the \`${role.name}\` role to ${member}`)
               .setColor('RED');
             message.channel.send(errorEmbed);
           });
