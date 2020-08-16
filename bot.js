@@ -37,7 +37,10 @@ bot.on('message', async (message) => {
   if (!command) return;
 
   if (command.guildOnly && message.channel.type !== 'text') {
-    return message.reply('Sorry, I can\'t execute that inside DMs!');
+    const errorEmbed = new Discord.MessageEmbed()
+      .setDescription(`❌ I can't execute ${commandName} inside DMs!`)
+      .setColor('RED');
+    return message.channel.send(errorEmbed);
   }
 
   if (!cooldowns.has(command.name)) {
@@ -53,7 +56,10 @@ bot.on('message', async (message) => {
 
     if (now < expirationTime) {
       const timeLeft = (expirationTime - now) / 1000;
-      return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`);
+      const errorEmbed = new Discord.MessageEmbed()
+        .setDescription(`❌ Please wait ${timeLeft.toFixed(1)} second(s) before reusing the \`${command.name}\` command.`)
+        .setColor('RED');
+      return message.channel.send(errorEmbed);
     }
   }
 
@@ -65,6 +71,9 @@ bot.on('message', async (message) => {
   }
   catch (error) {
     console.error(error);
-    message.reply('An error while trying to execute that command.');
+    const errorEmbed = new Discord.MessageEmbed()
+      .setDescription(`❌ An error while trying to execute that command.`)
+      .setColor('RED');
+    message.channel.send(errorEmbed);
   }
 });
