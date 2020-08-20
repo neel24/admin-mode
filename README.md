@@ -16,29 +16,30 @@ These are the commands which are currently available:
 
 **.repo** - Provides the repo url of the bot.<br>
 
-**.server-info** - Provides some info about the server.<br>
+**.serverinfo** - Provides some info about the server.<br>
 
-**.user-info** - Provides some info on the specified user.<br>Usage: `.user-info @username/member_id`.<br>
+**.userinfo** - Provides some info on the specified user.<br>Usage: `.user-info @username/member_id`<br>
 
-**.kick** - Kicks a member from the current server.<br>Usage: `.kick @username/member_id`.<br>
+**.kick** - Kicks a member from the current server.<br>Usage: `.kick @username/member_id`<br>
 
-**.ban** - Bans a member from the current server.<br>Usage: `.ban @username/member_id`.<br>
+**.ban** - Bans a member from the current server.<br>Usage: `.ban @username/member_id`<br>
 
-**.unban** - Unbans a member from the current server.<br>Usage: `.unban member_id`.<br>
+**.unban** - Unbans a member from the current server.<br>Usage: `.unban member_id`<br>
 
-**.mute** - Prevents a member from sending messages/adding reactions.<br>Usage: `.mute @username/member_id`.<br>
+**.mute** - Prevents a member from sending messages/adding reactions.<br>Usage: `.mute @username/member_id`<br>
 
-**.unmute** - Gives a member back the permissions to send messages/add reactions.<br>Usage: `.unmute @username/member_id`.<br>
+**.unmute** - Gives a member back the permissions to send messages/add reactions.<br>Usage: `.unmute @username/member_id`<br>
 
-**.purge** - Deletes the number of messages provided.<br>Usage: `.purge [number_of_messages_to_delete]`.<br>
+**.purge** - Deletes the number of messages provided.<br>Usage: `.purge [number_of_messages_to_delete]`<br>
 
-**.add-role** - Adds the specified role to a member.<br>Usage: `.add-role @username/member_id <role-name>`.<br>
+**.addrole** - Adds the specified role to a member.<br>Usage: `.add-role @username/member_id <role-name>`<br>
 
-**.remove-role** - Removes the specified role from a member.<br>Usage: `.remove-role @username/member_id <role-name>`.<br>
+**.removerole** - Removes the specified role from a member.<br>Usage: `.remove-role @username/member_id <role-name>`<br>
 
 **.lock** - Prevents members with the @everyone role from viewing/sending messages in a specific channel.<br>Usage: `.lock [#channel-name/channel_id] <lock-mode>`<br>Lock modes: `send, view/read`<br>
 
 **.unlock** - Allows members with the @everyone role to view/send messages in a specific channel.<br>Usage: `.unlock [#channel-name/channel_id] <unlock-mode>`<br>Unlock modes: `send, view/read`<br>
+
 ## Running the bot locally
 
 - Clone the repo with `HTTPS/SSH`.
