@@ -27,19 +27,19 @@ module.exports = {
       else {
         if(!ban.get(member.id)) {
           const errorEmbed = new Discord.MessageEmbed()
-            .setDescription(`❌ ${member} is not banned!`)
+            .setDescription(`❌ ${member} is not banned.`)
             .setColor('RED');
           return message.channel.send(errorEmbed);
         }
         message.guild.members.unban(member.id).then(() => {
           const msgEmbed = new Discord.MessageEmbed()
-            .setDescription(`✅ ${member} was unbanned!`)
+            .setDescription(`✅ ${member} was unbanned.`)
             .setColor('GREEN');
           message.channel.send(msgEmbed);
         }).catch((error) => {
           console.log(error);
           const errorEmbed = new Discord.MessageEmbed()
-            .setDescription(`❌ Sorry, I couldn't unban ${member}!`)
+            .setDescription(`❌ Unable to unban ${member}`)
             .setColor('RED');
           message.channel.send(errorEmbed);
         });

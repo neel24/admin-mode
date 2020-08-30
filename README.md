@@ -8,29 +8,29 @@ You can invite the bot to your server by using [this link](https://discord.com/o
 
 These are the commands which are currently available:
 
-**.about** - Provides a description and some stats of the bot.<br>
+**.about** - Provides a description and some stats of the bot.<br>Aliases: `.info`, `.stats`<br>
 
-**.help** - DM's the available commands and the usage.<br>
+**.help** - DM's the available commands and the usage.<br>Aliases: `.commands`<br>
 
-**.ping** - Returns the bot's latency and API ping.<br>
+**.ping** - Returns the bot's latency and API ping.<br>Aliases: `.latency`<br>
 
-**.repo** - Provides the repo url of the bot.<br>
+**.repo** - Provides the repo url of the bot.<br>Aliases: `.source`, `.github`<br>
 
-**.serverinfo** - Provides some info about the server.<br>
+**.serverinfo** - Provides some info about the server.<br>Aliases: `.server`, `.guild`<br>
 
-**.userinfo** - Provides some info on the specified user.<br>Usage: `.user-info @username/member_id`<br>
+**.userinfo** - Provides some info on the specified user.<br>Aliases: `.user`<br>Usage: `.user-info @username/member_id`<br>
 
 **.kick** - Kicks a member from the current server.<br>Usage: `.kick @username/member_id`<br>
 
-**.ban** - Bans a member from the current server.<br>Usage: `.ban @username/member_id`<br>
+**.ban** - Bans a member from the current server.<br>Aliases: `.banish`<br>Usage: `.ban @username/member_id`<br>
 
-**.unban** - Unbans a member from the current server.<br>Usage: `.unban member_id`<br>
+**.unban** - Unbans a member from the current server.<br>Aliases: `.unbanish`<br>Usage: `.unban member_id`<br>
 
 **.mute** - Prevents a member from sending messages/adding reactions.<br>Usage: `.mute @username/member_id`<br>
 
-**.unmute** - Gives a member back the permissions to send messages/add reactions.<br>Usage: `.unmute @username/member_id`<br>
+**.unmute** - Allows a member to send messages/add reactions.<br>Usage: `.unmute @username/member_id`<br>
 
-**.purge** - Deletes the number of messages provided.<br>Usage: `.purge [number_of_messages_to_delete]`<br>
+**.purge** - Deletes the number of messages provided.<br>Aliases: `.delete`<br>Usage: `.purge [number_of_messages_to_delete]`<br>
 
 **.addrole** - Adds the specified role to a member.<br>Usage: `.add-role @username/member_id <role-name>`<br>
 

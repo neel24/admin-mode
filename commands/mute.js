@@ -25,14 +25,14 @@ module.exports = {
 
         if (member.roles.cache.some(role => role.name === 'Muted')) {
           const errorEmbed = new Discord.MessageEmbed()
-            .setDescription(`❌ ${member} is already muted!`)
+            .setDescription(`❌ ${member} is already muted.`)
             .setColor('RED');
           return message.channel.send(errorEmbed);
         }
 
         if (member.hasPermission('ADMINISTRATOR')) {
           const errorEmbed = new Discord.MessageEmbed()
-            .setDescription(`❌ I'm unable to do that because ${member} is an admin.`)
+            .setDescription(`❌ Unable to do that because ${member} is an admin.`)
             .setColor('RED');
           return message.channel.send(errorEmbed);
         }
@@ -47,13 +47,13 @@ module.exports = {
           }).then((muteRole) => {
             member.roles.add(muteRole);
             const msgEmbed = new Discord.MessageEmbed()
-              .setDescription(`✅ ${member} has been muted!`)
+              .setDescription(`✅ ${member} has been muted.`)
               .setColor('GREEN');
             message.channel.send(msgEmbed);
           }).catch((error) => {
             console.log(error);
             const errorEmbed = new Discord.MessageEmbed()
-              .setDescription(`❌ Sorry, I'm unable to mute ${member}`)
+              .setDescription(`❌ Unable to mute ${member}`)
               .setColor('RED');
             message.channel.send(errorEmbed);
           });
@@ -61,13 +61,13 @@ module.exports = {
         else {
           member.roles.add(muteRole).then(() => {
             const msgEmbed = new Discord.MessageEmbed()
-              .setDescription(`✅ ${member} has been muted!`)
+              .setDescription(`✅ ${member} has been muted.`)
               .setColor('GREEN');
             message.channel.send(msgEmbed);
           }).catch((error) => {
             console.log(error);
             const errorEmbed = new Discord.MessageEmbed()
-              .setDescription(`❌ Sorry, I'm unable to mute ${member}`)
+              .setDescription(`❌ Unable to mute ${member}`)
               .setColor('RED');
             message.channel.send(errorEmbed);
           });

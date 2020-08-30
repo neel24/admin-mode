@@ -39,7 +39,7 @@ module.exports = {
           }).catch((error) => {
             console.log(error);
             const errorEmbed = new Discord.MessageEmbed()
-              .setDescription(`❌ Unable to lock \`${channel.name}\`.`)
+              .setDescription(`❌ Unable to unlock \`${channel.name}\`.`)
               .setColor('RED');
             message.channel.send(errorEmbed);
           });
@@ -61,7 +61,7 @@ module.exports = {
           }).catch((error) => {
             console.log(error);
             const errorEmbed = new Discord.MessageEmbed()
-              .setDescription(`❌ Unable to lock \`${channel.name}\`.`)
+              .setDescription(`❌ Unable to unlock \`${channel.name}\`.`)
               .setColor('RED');
             message.channel.send(errorEmbed);
           });

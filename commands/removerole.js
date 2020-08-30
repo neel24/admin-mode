@@ -45,7 +45,7 @@ module.exports = {
         else {
           member.roles.remove(role.id).then(() => {
             const msgEmbed = new Discord.MessageEmbed()
-              .setDescription(`✅ The \`${role.name}\` role was removed from ${member}.`)
+              .setDescription(`✅ The \`${role.name}\` role was removed from ${member}`)
               .setColor('GREEN');
             message.channel.send(msgEmbed);
           }).catch((error) => {

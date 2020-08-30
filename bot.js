@@ -38,7 +38,7 @@ bot.on('message', async (message) => {
 
   if (command.guildOnly && message.channel.type !== 'text') {
     const errorEmbed = new Discord.MessageEmbed()
-      .setDescription(`❌ I can't execute ${commandName} inside DMs!`)
+      .setDescription(`❌ Unable to execute \`.${commandName}\` inside DMs.`)
       .setColor('RED');
     return message.channel.send(errorEmbed);
   }
