@@ -27,6 +27,6 @@
     "dotenv": "^8.2.0",
     "eslint": "^7.1.0",
     "giphy-js-sdk-core": "^1.0.6",
-    "moment": "^2.27.0"
+    "moment": "^2.29.4"
   }
 }
